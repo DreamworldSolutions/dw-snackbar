@@ -1,0 +1,35 @@
+{
+  "name": "@dreamworld/dw-snackbar",
+  "version": "0.0.0-development",
+  "description": "",
+  "main": "dw-checkbox.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/DreamworldSolutions/dw-checkbox.git"
+  },
+  "keywords": [
+    "lit",
+    "checkbox"
+  ],
+  "author": "Ruchita kheni",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DreamworldSolutions/dw-checkbox/issues"
+  },
+  "homepage": "https://github.com/DreamworldSolutions/dw-checkbox#readme",
+  "dependencies": {
+    "lit-element": "^2.2.1"
+  },
+  "devDependencies": {
+    "semantic-release": "16.0.0-beta.23"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "resolutions": {
+    "@semantic-release/npm": "5.2.0-beta.5"
+  }
+}
