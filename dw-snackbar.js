@@ -88,7 +88,7 @@ export class DwSnackbar extends LitElement {
         }
 
         .toast[type="ERROR"]{
-          background-color: var(--mdc-theme-on-error, #b00020);
+          background-color: var(--mdc-theme-error, #b00020);
         }
 
         @keyframes fadeInUp {
