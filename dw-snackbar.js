@@ -8,7 +8,7 @@ import '@dreamworld/dw-button';
 
 let snackBar;
 
-export class DwSnackbar extends LitElement {
+export class DwSnackbar extends LitElement { 
   static get styles() {
     return [
       Typography,
