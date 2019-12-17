@@ -61,4 +61,15 @@ No op, if no snackbar is found with that id. This can happen when Snackbar is au
 
 
 ## CSS Properties
-//TODO
+
+| Name  | Description |
+| ----  | ----------- |
+| --snackbar-color | Color of the snackbar text and icon |
+| --snackbar-bg-color | Background color of the snackbar |
+| --snackbar-bg-color-warn | Background color of the warn type snackbar |
+| --mdc-theme-on-error | Background color of the error type snackbar |
+
+
+### Road map
+
+> Add feature to show stacked action button
