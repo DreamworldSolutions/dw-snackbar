@@ -49,6 +49,7 @@ export class DwSnackbar extends LitElement {
 
         .toast{
           min-width: 344px;
+          max-width: 450px;
           margin: 8px 24px;
           box-sizing: border-box;
           color: var(--snackbar-color, rgba(255, 255, 255, 0.87));
@@ -57,7 +58,6 @@ export class DwSnackbar extends LitElement {
           box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
           border-radius: 4px;
           min-height: 48px;
-          max-width: fit-content;
         }
 
         .animated {
