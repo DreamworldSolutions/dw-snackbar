@@ -60,6 +60,14 @@ export class DwSnackbar extends LitElement {
           min-height: 48px;
         }
 
+        .toast[type="WARN"]{
+          background-color: var(--snackbar-bg-color-warn, #FD9725);
+        }
+
+        .toast[type="ERROR"]{
+          background-color: var(--mdc-theme-error, #b00020);
+        }
+
         .animated {
           animation-duration: 100ms;
           animation-fill-mode: both;
@@ -81,14 +89,6 @@ export class DwSnackbar extends LitElement {
 
         a{
           text-decoration: none;
-        }
-
-        .toast[type="WARN"]{
-          background-color: var(--snackbar-bg-color-warn, #FD9725);
-        }
-
-        .toast[type="ERROR"]{
-          background-color: var(--mdc-theme-error, #b00020);
         }
 
         @keyframes fadeInUp {
