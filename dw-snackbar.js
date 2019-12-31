@@ -1,8 +1,13 @@
 import { LitElement, html, css } from 'lit-element';
-import { displayFlex, vertical } from '@dreamworld/flex-layout/flex-layout-literals';
-import { startAligned, centerAligned,  endAligned} from '@dreamworld/flex-layout/flex-layout-alignment-literals';
+import { repeat } from 'lit-html/directives/repeat';
+
+// Styles
+import { displayFlex, vertical, horizontal } from '@dreamworld/flex-layout/flex-layout-literals';
+import { centerAligned } from '@dreamworld/flex-layout/flex-layout-alignment-literals';
 import { flexLayout } from '@dreamworld/flex-layout/flex-layout';
 import { Typography } from '@dreamworld/material-styles/typography';
+
+// Custom elements
 import '@dreamworld/dw-icon-button';
 import '@dreamworld/dw-button';
 
@@ -16,27 +21,26 @@ export class DwSnackbar extends LitElement {
       css`
         :host {
           position: fixed;
-          left: 0;
-          right: 0;
           z-index: 999; 
           ${displayFlex};
           ${vertical};
           user-select: none;
-          --dw-icon-color: var(--snackbar-color, rgba(255, 255, 255, 0.87));
-          --dw-icon-color-active: var(--snackbar-color, rgba(255, 255, 255, 0.87));
-          --mdc-theme-on-surface: var(--snackbar-color, rgba(255, 255, 255, 0.87));
+          --dw-icon-color: var(--dw-toast-color, var(--dw-icon-color-active-on-dark));
+          --dw-icon-color-active: var(--dw-toast-color, var(--dw-icon-color-active-on-dark));
+          --mdc-theme-on-surface: var(--dw-toast-color, var(--mdc-theme-text-primary-on-dark));
         }
 
         :host([_horizontalAlign='left']){
-          ${startAligned};
+          left: 0;
         }
 
         :host([_horizontalAlign='right']){
-          ${endAligned};
+          right: 0;
         }
 
         :host([_horizontalAlign='center']){
-          ${centerAligned};
+          transform: translateX(-50%);
+          left: 50%;
         }
 
         :host([_verticalAlign='top']){
@@ -48,12 +52,15 @@ export class DwSnackbar extends LitElement {
         }
 
         .toast{
-          min-width: 344px;
-          max-width: 450px;
-          margin: 8px 24px;
+          ${displayFlex};
+          ${horizontal};
+          ${centerAligned};
+          min-width: var(--dw-toast-min-width, 344px);
+          max-width: var(--dw-toast-max-width);
+          margin: var(--dw-toast-margin, 24px);
           box-sizing: border-box;
-          color: var(--snackbar-color, rgba(255, 255, 255, 0.87));
-          background-color: var(--snackbar-bg-color, #333);
+          color: var(--dw-toast-color, var(--mdc-theme-text-primary-on-dark));
+          background-color: var(--dw-toast-bg-color, #333);
           box-sizing: border-box;
           box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
           border-radius: 4px;
@@ -61,11 +68,16 @@ export class DwSnackbar extends LitElement {
         }
 
         .toast[type="WARN"]{
-          background-color: var(--snackbar-bg-color-warn, #FD9725);
+          background-color: var(--dw-toast-bg-color-warn, #FD9725);
         }
 
         .toast[type="ERROR"]{
           background-color: var(--mdc-theme-error, #b00020);
+        }
+
+        /* Flex items' margins won't collapse so removing top margin */
+        .toast + .toast{
+          margin-top: 0;
         }
 
         .animated {
@@ -144,14 +156,10 @@ export class DwSnackbar extends LitElement {
   }
 
   set position(position) { 
-    const oldValue = this.position;
-
     this._position = position;
 
     this._horizontalAlign = position.horizontal;
     this._verticalAlign = position.vertical;
-
-    this.requestUpdate('position', oldValue);
   }
 
   get position() { 
@@ -161,13 +169,11 @@ export class DwSnackbar extends LitElement {
   render() {
     return html`
 
-      ${Object.keys(this._toastList).map((key) => {
-        return html`
-
-          <div id="${key}" class="layout horizontal center toast animated" type="${this._toastList[key].type}">
+      ${repeat(Object.keys(this._toastList), (value) => value.id, (key) => html`
+          <div id="${key}" class="toast animated" type="${this._toastList[key].type}">
 
             <!-- Toast text -->
-            <span class="flex body2 text">${this._toastList[key].message}</span>
+            <div class="flex body2 text">${this._toastList[key].message}</div>
 
             <!-- Toast actions -->
             ${!this._toastList[key].actionButton ? '' : this._getActionButtonTemplate(this._toastList[key])}
@@ -184,8 +190,7 @@ export class DwSnackbar extends LitElement {
             `}
             
           </div>
-        `
-    })}
+        `)}
     `;
   }
 
@@ -258,9 +263,11 @@ export class DwSnackbar extends LitElement {
       return;
     }
 
-    this._toastList[id].onDismiss && this._toastList[id].onDismiss(id);
+    let toastDetail = this._toastList[id];
+
     delete this._toastList[id];
     this._toastList = { ...this._toastList };
+    toastDetail.onDismiss && toastDetail.onDismiss(id);
   }
 }
 

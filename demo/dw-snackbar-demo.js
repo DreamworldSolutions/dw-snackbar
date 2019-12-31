@@ -18,6 +18,8 @@ class DwSnackbarDemo extends LitElement {
       css`
        :host{
          display: block;
+         --dw-icon-color-active-on-dark: #fff;
+         --mdc-theme-text-primary-on-dark: #fff;
         }
         
         dw-snackbar{
