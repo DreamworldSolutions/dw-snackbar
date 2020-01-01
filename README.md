@@ -64,12 +64,14 @@ No op, if no snackbar is found with that id. This can happen when Snackbar is au
 
 | Name  | Description |
 | ----  | ----------- |
-| --snackbar-color | Color of the snackbar text and icon |
-| --snackbar-bg-color | Background color of the snackbar |
-| --snackbar-bg-color-warn | Background color of the warn type snackbar |
-| --mdc-theme-error | Background color of the error type snackbar |
+| `--dw-toast-color` | Color of the snackbar text and icon |
+| `--dw-toast-bg-color` | Background color of the snackbar |
+| `--dw-toast-bg-color-warn` | Background color of the warn type snackbar |
+| `--mdc-theme-error` | Background color of the error type snackbar |
+| `--dw-toast-margin` | `margin` for a toast|
+| `--dw-toast-min-width` | Min Width for a Toast. Default value `344px` |
+| `--dw-toast-max-width` | Max Width. Default no value. So, limited by the screen size |
 
 
 ### Road map
-
-> Add feature to show stacked action button
+> Add feature to show stacked action buttons (Action button is on the 2nd row)
