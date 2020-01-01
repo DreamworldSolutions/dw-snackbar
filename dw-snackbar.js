@@ -14,6 +14,16 @@ import '@dreamworld/dw-button';
 let snackBar;
 
 export class DwSnackbar extends LitElement { 
+
+  /**
+   * Sequential number assigned to each each Toast. Represents, the number lastly assigned. So, initial value is 0.
+   * For the first toast, number will be assigned 1.
+   * 
+   * Toast.counter is used to define sort-order. We want to preserve the order of the toasts, same as the submitted
+   * by the user. So, the Toast submitted first will be shown on the top in the sequence.
+   */
+  static counter = 0;
+
   static get styles() {
     return [
       Typography,
@@ -168,8 +178,7 @@ export class DwSnackbar extends LitElement {
 
   render() {
     return html`
-
-      ${repeat(Object.keys(this._toastList), (value) => value.id, (key) => html`
+      ${repeat(_.sortBy(this._toastList, 'counter'), (toast) => toast.id, (key) => html`
           <div id="${key}" class="toast animated" type="${this._toastList[key].type}">
 
             <!-- Toast text -->
@@ -182,9 +191,9 @@ export class DwSnackbar extends LitElement {
             ${this._toastList[key].hideDismissBtn || this._toastList[key].actionButton ? '' : html`
             
               <dw-icon-button
-               buttonSize="36"
-               iconSize="18"
-               icon="${this._toastList[key].dismissIcon}"
+               .buttonSize="36"
+               .iconSize="18"
+               .icon="${this._toastList[key].dismissIcon}"
                @click="${() => { this.hide(key); }}">
               </dw-icon-button>
             `}
@@ -240,7 +249,7 @@ export class DwSnackbar extends LitElement {
     this._toastList = this._toastList ? this._toastList : {};
     this._toastList = {
       ...this._toastList,
-      [config.id]: {...this.defaultConfig, ...config}
+      [config.id]: {...this.defaultConfig, ...config, counter: ++this.constructor.counter}
     };
 
     let duration = this._toastList[config.id].timeout;
