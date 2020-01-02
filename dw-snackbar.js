@@ -1,5 +1,6 @@
 import { LitElement, html, css } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
+import sortBy from 'lodash-es/sortBy';
 
 // Styles
 import { displayFlex, vertical, horizontal } from '@dreamworld/flex-layout/flex-layout-literals';
@@ -14,15 +15,6 @@ import '@dreamworld/dw-button';
 let snackBar;
 
 export class DwSnackbar extends LitElement { 
-
-  /**
-   * Sequential number assigned to each each Toast. Represents, the number lastly assigned. So, initial value is 0.
-   * For the first toast, number will be assigned 1.
-   * 
-   * Toast.counter is used to define sort-order. We want to preserve the order of the toasts, same as the submitted
-   * by the user. So, the Toast submitted first will be shown on the top in the sequence.
-   */
-  static counter = 0;
 
   static get styles() {
     return [
@@ -178,23 +170,23 @@ export class DwSnackbar extends LitElement {
 
   render() {
     return html`
-      ${repeat(_.sortBy(this._toastList, 'counter'), (toast) => toast.id, (key) => html`
-          <div id="${key}" class="toast animated" type="${this._toastList[key].type}">
+      ${repeat(sortBy(this._toastList, 'counter'), (toast) => toast.id, (toast) => html`
+          <div class="toast animated" type="${toast.type}">
 
             <!-- Toast text -->
-            <div class="flex body2 text">${this._toastList[key].message}</div>
+            <div class="flex body2 text">${toast.message}</div>
 
             <!-- Toast actions -->
-            ${!this._toastList[key].actionButton ? '' : this._getActionButtonTemplate(this._toastList[key])}
+            ${!toast.actionButton ? '' : this._getActionButtonTemplate(toast)}
 
             <!-- Dismiss button -->
-            ${this._toastList[key].hideDismissBtn || this._toastList[key].actionButton ? '' : html`
+            ${toast.hideDismissBtn || toast.actionButton ? '' : html`
             
               <dw-icon-button
-               .buttonSize="36"
-               .iconSize="18"
-               .icon="${this._toastList[key].dismissIcon}"
-               @click="${() => { this.hide(key); }}">
+               buttonSize="36"
+               iconSize="18"
+               .icon="${toast.dismissIcon}"
+               @click="${() => { this.hide(toast.id); }}">
               </dw-icon-button>
             `}
             
@@ -218,6 +210,14 @@ export class DwSnackbar extends LitElement {
     };
 
     snackBar = this;
+    /**
+     * Sequential number assigned to each each Toast. Represents, the number lastly assigned. So, initial value is 0.
+     * For the first toast, number will be assigned 1.
+     * 
+     * Toast.counter is used to define sort-order. We want to preserve the order of the toasts, same as the submitted
+     * by the user. So, the Toast submitted first will be shown on the top in the sequence.
+    */
+    this.constructor.counter = 0;
   }
 
   _getActionButtonTemplate(config) { 
