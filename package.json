@@ -43,6 +43,8 @@
     "@material/theme": "3.1.0",
     "@material/animation": "3.1.0",
     "@material/base": "3.1.0",
-    "@material/dom": "3.1.0"
+    "@material/dom": "3.1.0",
+    "lit-element": "2.3.1",
+    "lit-html": "1.2.1"
   }
 }
