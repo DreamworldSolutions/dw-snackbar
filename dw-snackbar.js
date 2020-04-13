@@ -180,7 +180,7 @@ export class DwSnackbar extends LitElement {
             ${!toast.actionButton ? '' : this._getActionButtonTemplate(toast)}
 
             <!-- Dismiss button -->
-            ${toast.hideDismissBtn ? '' : html`
+            ${toast.hideDismissBtn || toast.actionButton ? '' : html`
             
               <dw-icon-button
                buttonSize="36"
