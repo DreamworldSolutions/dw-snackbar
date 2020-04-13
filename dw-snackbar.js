@@ -254,7 +254,7 @@ export class DwSnackbar extends LitElement {
 
     let duration = this._toastList[config.id].timeout;
 
-    if (duration === 0) { 
+    if (duration === 0 || this._toastList[config.id].type === 'ERROR') { 
       return;
     }
 
