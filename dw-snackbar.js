@@ -181,7 +181,6 @@ export class DwSnackbar extends LitElement {
 
             <!-- Dismiss button -->
             ${toast.hideDismissBtn ? '' : html`
-            
               <dw-icon-button
                buttonSize="36"
                iconSize="18"
