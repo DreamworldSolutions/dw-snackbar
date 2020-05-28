@@ -1,4 +1,5 @@
 import { LitElement, html, css } from 'lit-element';
+import { layoutMixin } from '@dreamworld/pwa-helpers/layout-mixin.js';
 import { repeat } from 'lit-html/directives/repeat';
 import sortBy from 'lodash-es/sortBy';
 
@@ -12,9 +13,36 @@ import { Typography } from '@dreamworld/material-styles/typography';
 import '@dreamworld/dw-icon-button';
 import '@dreamworld/dw-button';
 
+/**
+ * This element is extended from 'layoutMixin' which sets "mobile" property initially.
+ * There are 3 types of toast generally: "Informative", "Warning" "Error"
+ * 
+ * Behavior: 
+ *  - In mobile it's bottom/center aligned while in desktop it's bottom/left aligned.
+ *  - Default type is "INFO". Use can provide "WARN" & "ERROR"
+ *  - If actionButton is provided in config, it will renders action button at right side.
+ *  - Renders close button at right side by default. User can hide it as well by "hideDismissBtn" config property.
+ * 
+ * 
+ * CSS varialbes
+ *  --dw-toast-min-width (It's applied to desktop only. In mobile there is no minimum width.)
+ *  --dw-toast-max-width (Used to set maximum width of toast. default is 768px)
+ *  --dw-toast-margin (Used to set around margin in desktop. Default is 24px)
+ *  --dw-toast-mobile-margin (Used to set around margin in mobile. Default is 20px)
+ *  --dw-toast-color
+ *  --dw-toast-bg-color
+ *  --dw-toast-bg-color-warn
+ * 
+ * USAGE PATTERN: 
+ *   <dw-snackbar></dw-snackbar>
+ *   import {show as showSnackBar} from '@dreamworld/dw-snackbar/dw-snackbar.js';
+ * 
+ *    showSnackBar({ message: ${message}), actionButton: {caption: ${buttonCaption}, callback} });
+ */
+
 let snackBar;
 
-export class DwSnackbar extends LitElement { 
+export class DwSnackbar extends layoutMixin(LitElement) { 
 
   static get styles() {
     return [
@@ -58,7 +86,7 @@ export class DwSnackbar extends LitElement {
           ${horizontal};
           ${centerAligned};
           min-width: var(--dw-toast-min-width, 344px);
-          max-width: var(--dw-toast-max-width);
+          max-width: var(--dw-toast-max-width, 768px);
           margin: var(--dw-toast-margin, 24px);
           box-sizing: border-box;
           color: var(--dw-toast-color, var(--mdc-theme-text-primary-on-dark));
@@ -67,6 +95,12 @@ export class DwSnackbar extends LitElement {
           box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
           border-radius: 4px;
           min-height: 48px;
+        }
+
+        :host([mobile]) .toast{
+          margin: var(--dw-toast-mobile-margin, 20px);
+          min-width: 0;
+          width: calc(100vw - (var(--dw-toast-mobile-margin, 20px) * 2));
         }
 
         .toast[type="WARN"]{
@@ -153,8 +187,26 @@ export class DwSnackbar extends LitElement {
        * Vertically position of the toast
        * e.g. 'top', 'bottom'
        */
-      _verticalAlign: { type: String, reflect: true}
+      _verticalAlign: { type: String, reflect: true }
     };
+  }
+
+  get mobile(){
+    return this._mobile;
+  }
+  
+  set mobile(value) {
+    let oldValue = this._mobile;
+    if(value === oldValue) {
+      return;
+    }
+    this._mobile = value;
+    if (this._mobile) {
+      this.position = { horizontal: 'center', vertical: 'bottom' };
+    } else {
+      this.position = { horizontal: 'left', vertical: 'bottom' };
+    }
+    this.requestUpdate('mobile', oldValue);
   }
 
   set position(position) { 
