@@ -1,5 +1,10 @@
 # dw-snackbar
 A Material design snackbar WebComponent implemented through LitElement
+- There are 3 types of toast generally: "Informative", "Warning" & "Error"
+- In mobile it's bottom/center aligned (full width with around margin) while in desktop it's bottom/left aligned.
+- Default type is "INFO". User can provide "WARN" & "ERROR"
+- Provides a way to render action button. It can be used for UNDO / RELOAD / any else use case.
+- Renders close button at right side by default. User can hide it as well by "hideDismissBtn" config  property.
 
 ## Usage
 1. Add Snackbar to your App Shell. 
@@ -68,9 +73,10 @@ No op, if no snackbar is found with that id. This can happen when Snackbar is au
 | `--dw-toast-bg-color` | Background color of the snackbar |
 | `--dw-toast-bg-color-warn` | Background color of the warn type snackbar |
 | `--mdc-theme-error` | Background color of the error type snackbar |
-| `--dw-toast-margin` | `margin` for a toast|
-| `--dw-toast-min-width` | Min Width for a Toast. Default value `344px` |
-| `--dw-toast-max-width` | Max Width. Default no value. So, limited by the screen size |
+| `--dw-toast-margin` | `margin` for a toast.  Default is 24px|
+| `--dw-toast-mobile-margin` | Used to set `margin` in mobile. Default is 20px |
+| `--dw-toast-min-width` | Min Width for a Toast. Default value `344px`. It's applied only in Desktop |
+| `--dw-toast-max-width` | Max Width. Default no value. So, limited by the screen size. Defualt is 768px |
 
 
 ### Road map
