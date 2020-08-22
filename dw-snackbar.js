@@ -1,4 +1,5 @@
-import { LitElement, html, css } from 'lit-element';
+import { html, css } from 'lit-element';
+import { LitElement } from '@dreamworld/pwa-helpers/lit-element.js';
 import { layoutMixin } from '@dreamworld/pwa-helpers/layout-mixin.js';
 import { repeat } from 'lit-html/directives/repeat';
 import sortBy from 'lodash-es/sortBy';
