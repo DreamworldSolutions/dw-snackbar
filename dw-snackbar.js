@@ -285,7 +285,8 @@ export class DwSnackbar extends layoutMixin(LitElement) {
   }
 
   /**
-   * Purpose: To override the timeout at the base of toast data on the application.
+   * Returns timeout for the given toastId. It can be overridden to customize the behavior. 
+   * e.g. To return the duration based on application requirement like N seconds for the Toasts without action buttons and M seconds for the Toasts with Action Buttons.
    * @param {*} toastId 
    * @returns toast timeout of given toastId from toast list data.
    * @protected
