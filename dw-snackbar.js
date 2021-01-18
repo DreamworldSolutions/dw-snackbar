@@ -9,6 +9,7 @@ import { displayFlex, vertical, horizontal } from '@dreamworld/flex-layout/flex-
 import { centerAligned } from '@dreamworld/flex-layout/flex-layout-alignment-literals';
 import { flexLayout } from '@dreamworld/flex-layout/flex-layout';
 import { Typography } from '@dreamworld/material-styles/typography';
+import { styleMap } from 'lit-html/directives/style-map.js';
 
 // Custom elements
 import '@dreamworld/dw-icon-button';
@@ -227,7 +228,7 @@ export class DwSnackbar extends layoutMixin(LitElement) {
           <div class="toast animated" type="${toast.type}">
 
             <!-- Toast text -->
-            <div class="flex body2 text">${toast.message}</div>
+            <div class="flex body2 text" style=${styleMap({color: toast.textColor})}>${toast.message}</div>
 
             <!-- Toast actions -->
             ${!toast.actionButton ? '' : this._getActionButtonTemplate(toast)}
@@ -254,7 +255,8 @@ export class DwSnackbar extends layoutMixin(LitElement) {
       type: 'INFO',
       timeout: 10000,
       hideDismissBtn: false,
-      dismissIcon: 'close'
+      dismissIcon: 'close',
+      textColor: 'var(--dw-toast-color, var(--mdc-theme-text-primary-on-dark))'
     };
 
     snackBar = this;

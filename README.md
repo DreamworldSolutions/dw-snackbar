@@ -30,6 +30,7 @@ Used to show a snackbar. `config` is a plain-JS Object as follows:
    message: '', //Required
    type: 'INFO',  // (Optional) Possible values INFO | WARN | ERROR. Default: INFO
    timeout: 10000,  // (Optional) Time is in milliseconds after which message should be automatically dismissed. Set to `0` to prevent automatic dismiss. Default: 10000
+   textColor: 'red', // (Optional) Provides the way using which you can update the color of the text in toast. Default: var(--mdc-theme-text-primary-on-dark).
    hideDismissBtn: true,  // (Optional) Set `true` to hide (not show) dismiss button. Default: false
    dismissIcon: '', // (Optional) Name of the Dismiss icon to be used. Default value: 'clear'
    onDismiss: callback, //(Optional), A Callback function when snackbar is dimissed, call in both cases: Either automatically closed or manually. It's first agument will be `id`.
