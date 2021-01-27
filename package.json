@@ -21,8 +21,8 @@
   },
   "homepage": "https://github.com/DreamworldSolutions/dw-snackbar#readme",
   "dependencies": {
-    "@dreamworld/dw-button": "^1.0.6",
-    "@dreamworld/dw-icon-button": "^1.1.2",
+    "@dreamworld/dw-button": "^2.1.0",
+    "@dreamworld/dw-icon-button": "^2.1.0",
     "@dreamworld/flex-layout": "^1.1.0",
     "@dreamworld/material-styles": "^1.1.1",
     "@dreamworld/pwa-helpers": "^1.7.1",
@@ -36,16 +36,7 @@
     "access": "public"
   },
   "resolutions": {
-    "@material/mwc-base": "0.7.0",
-    "@material/mwc-ripple": "0.7.1",
-    "@material/feature-targeting": "3.1.0",
-    "@material/ripple": "3.2.0",
-    "@material/theme": "3.1.0",
-    "@material/animation": "3.1.0",
-    "@material/base": "3.1.0",
-    "@material/dom": "3.1.0",
-    "lit-element": "2.3.1",
-    "lit-html": "1.2.1"
+    "tslib": "2.1.0"
   },
   "release": {
     "branches": [
