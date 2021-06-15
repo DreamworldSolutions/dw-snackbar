@@ -15,6 +15,12 @@ In app-shell render template add element
 2. To show snackbar, call `show` or `hide` method in `@dreamworld/dw-snackbar` module.
 
 
+### Mobile Mode
+By default it auto-activates the mobile mode when the screen/window width is less than 768px. Though, you can use `mobile` (boolean) property to control this yourself.
+
+When Mobile mode is activated, Toast is alawys shown in the full-width of the screen (leaving some margins on the left & right).
+
+
 ## APIs
 
 ### setDefaults(config)
@@ -34,7 +40,7 @@ Used to show a snackbar. `config` is a plain-JS Object as follows:
    hideDismissBtn: true,  // (Optional) Set `true` to hide (not show) dismiss button. Default: false
    dismissIcon: '', // (Optional) Name of the Dismiss icon to be used. Default value: 'clear'
    onDismiss: callback, //(Optional), A Callback function when snackbar is dimissed, call in both cases: Either automatically closed or manually. It's first agument will be `id`.
-   actionButton: { //(Optional), When actionButton spec is specified, dismiss icon-button isn't shown.
+   actionButton: { //(Optional), When actionButton spec is specified
      caption: '',  // Button Text/Caption
      callback: callBack, // callback function to be invoked when user clicks on the action button. Callback method will receive `id` in the argument.
      link: link // Link to be opened when user clicks on the button. Link will be opened in the current window. Actually action button will be rendered as Link button. It's exclusive to `callback`. So, `callback` isn't invoked when this is specified.
@@ -69,7 +75,8 @@ No op, if no snackbar is found with that id. This can happen when Snackbar is au
 | `--dw-toast-bg-color` | Background color of the snackbar |
 | `--dw-toast-bg-color-warn` | Background color of the warn type snackbar |
 | `--mdc-theme-error` | Background color of the error type snackbar |
-| `--dw-toast-margin` | `margin` for a toast|
+| `--dw-toast-margin` | `margin` for a toast. Default value: `24px`. You can set different values for the top/bottom & left/right margins too. e.g. `24px 210px`. So, the toast will be shown 210px away from the left edge of the screen (after the drawer) and 24px away from the bottom edge of the screen. **This doesn't work for the Mobile Layout.** |
+| `--dw-toast-mobile-margin` | Left & Right margin for the Toast on the Mobile. On the Mobile a Toast is always shown in the full width, so you just need to modify the value of the left & right margins. Default value: `20px`. |
 | `--dw-toast-min-width` | Min Width for a Toast. Default value `344px` |
 | `--dw-toast-max-width` | Max Width. Default no value. So, limited by the screen size |
 
