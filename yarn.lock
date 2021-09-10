@@ -33,9 +33,9 @@
     lit-element "^2.2.0"
 
 "@dreamworld/dw-icon-button@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@dreamworld/dw-icon-button/-/dw-icon-button-2.1.0.tgz#09c7841a94ba5925d9f68cab20a4132cef6290f8"
-  integrity sha512-jeAEFVlf7RoiCNTC89rtCEmIH5Hdl50MuuDp1nOWIRzTmn1O5HNJgaHMwg7H49aGRqBSaQawc1p70ll7n74tkQ==
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/@dreamworld/dw-icon-button/-/dw-icon-button-2.1.3.tgz#ad3a196c4f9eff29e58f09c4c0354e2c8ecd07f6"
+  integrity sha512-ppn149pjiWFHl1J3Ve1GRWPZCVXs1wSFpudM8FhTBhpnTQPBJUYF1NK8owWutDHTQ7seIjXkbrv27TeK3aC4bQ==
   dependencies:
     "@dreamworld/dw-icon" "^2.1.0"
     "@dreamworld/flex-layout" "^1.0.0"
@@ -45,9 +45,9 @@
     lit-element "^2.2.0"
 
 "@dreamworld/dw-icon@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@dreamworld/dw-icon/-/dw-icon-2.1.0.tgz#2d7061ad6b077514c7970728f296e4f308946e5c"
-  integrity sha512-t/NOOGDKOyS6+Oi8MF4q2OsNqMGipMjlgpO9fgG4TFpel48zd/k6THLTlxpxYzmYyLF7WK2wOzrFVS1kT52U2A==
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@dreamworld/dw-icon/-/dw-icon-2.1.1.tgz#3b63c9a696e8e9080aba4b13f93068c93004524f"
+  integrity sha512-R34QUIRS1hBTWpPYsOCLtWeNh0k09ReYEdoItHfg01LytyH+McUvjqztsM1z3gs6/1LtatHtlXB7/0rIeQvTTA==
   dependencies:
     "@dreamworld/pwa-helpers" "^1.7.1"
     "@material/mwc-icon" "0.20.0"
@@ -79,9 +79,12 @@
     pwa-helpers "^0.9.1"
 
 "@dreamworld/web-util@^1.2.0":
-  version "1.4.4"
-  resolved "https://registry.yarnpkg.com/@dreamworld/web-util/-/web-util-1.4.4.tgz#1125fb8cc8a7aa12e6b0422996df504c8b5df554"
-  integrity sha512-QdC/U+fX3onm7P11FVOrmwIRveYP6rrVAqyoO7BLJ98wL4X7rJGlIXBu5FdZ0SE8moyFCmkkWm/1gIzG+62pdQ==
+  version "1.4.6"
+  resolved "https://registry.yarnpkg.com/@dreamworld/web-util/-/web-util-1.4.6.tgz#866ff9dcbe8a0f1e272b3043e4adb63df45fb2eb"
+  integrity sha512-MkJRINUgw5ouGFejrU6+woQEsR/aGLWPiasoO//VbK67D8uU3NvC3kmoMQo/kmDniYSdEbpthu2r0KLGrjdpFQ==
+  dependencies:
+    bowser "^2.11.0"
+    lodash-es "^4.17.21"
 
 "@iarna/cli@^1.2.0":
   version "1.2.0"
@@ -649,7 +652,7 @@ bottleneck@^2.18.1:
   resolved "https://registry.yarnpkg.com/bottleneck/-/bottleneck-2.19.5.tgz#5df0b90f59fd47656ebe63c78a98419205cadd91"
   integrity sha512-VHiNCbI1lKdl44tGrhNfU3lup0Tj/ZBMJB5/2ZbNXRCPuRCO7ed2mgcK4r17y+KB2EfuYuRaVlwNbAeaWGSpbw==
 
-bowser@^2.8.1:
+bowser@^2.11.0, bowser@^2.8.1:
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/bowser/-/bowser-2.11.0.tgz#5ca3c35757a7aa5771500c70a73a9f91ef420a8f"
   integrity sha512-AlcaJBi/pqqJBIQ8U9Mcpc9i8Aqxn88Skv5d+xBX006BY5u8N3mGLHa5Lgppa7L/HfwgwLgZ6NYs+Ag6uUmJRA==
@@ -2537,10 +2540,10 @@ lockfile@^1.0.4:
   dependencies:
     signal-exit "^3.0.2"
 
-lodash-es@^4.17.15:
-  version "4.17.20"
-  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.20.tgz#29f6332eefc60e849f869c264bc71126ad61e8f7"
-  integrity sha512-JD1COMZsq8maT6mnuz1UMV0jvYD0E0aUsSOdrr1/nAG3dhqQXwRRgeW0cSqH1U43INKcqxaiVIQNOUDld7gRDA==
+lodash-es@^4.17.15, lodash-es@^4.17.21:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
+  integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
 
 lodash._baseuniq@~4.6.0:
   version "4.6.0"
