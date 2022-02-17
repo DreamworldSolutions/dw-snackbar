@@ -62,24 +62,24 @@ export class DwSnackbar extends layoutMixin(LitElement) {
           --mdc-theme-on-surface: var(--dw-toast-color, var(--mdc-theme-text-primary-on-dark));
         }
 
-        :host([_horizontalAlign='left']){
+        :host([position-horizontal='left']){
           left: 0;
         }
 
-        :host([_horizontalAlign='right']){
+        :host([position-horizontal='right']){
           right: 0;
         }
 
-        :host([_horizontalAlign='center']){
+        :host([position-horizontal='center']){
           transform: translateX(-50%);
           left: 50%;
         }
 
-        :host([_verticalAlign='top']){
+        :host([position-vertical='top']){
           top: 0;
         }
 
-        :host([_verticalAlign='bottom']){
+        :host([position-vertical='bottom']){
           bottom: 0;
         }
 
@@ -164,16 +164,6 @@ export class DwSnackbar extends layoutMixin(LitElement) {
       defaultConfig: { type: Object },
 
       /**
-       * Position of the toast at where to show taost
-       * 
-       * e.g. {
-       *    horizontal: 'left', //Posible values: 'left', 'center', 'right'. Default: 'left'
-       *    vertical: 'bottom' //Possible values: 'top', 'bottom'. Default: 'bottom'.
-       *  }
-       */
-      position: { type: Object },
-
-      /**
        * Map of currently opened toast with its configuration
        * e.g. { toastId: { message: 'toast' } }
        */
@@ -182,70 +172,45 @@ export class DwSnackbar extends layoutMixin(LitElement) {
       /**
        * Horizontal position of the toast
        * e.g. 'left', 'center', 'right'
+       * Defaull is 'left' for desktop and 'center' for mobile;
        */
-      _horizontalAlign: { type: String, reflect: true },
+      positionHorizontal: { 
+        type: String, 
+        reflect: true, 
+        attribute: 'position-horizontal' 
+      },
       
       /**
        * Vertically position of the toast
        * e.g. 'top', 'bottom'
        */
-      _verticalAlign: { type: String, reflect: true }
+      positionVertical: { 
+        type: String, 
+        reflect: true, 
+        attribute: 'position-vertical' 
+      },
+
     };
   }
 
-  get mobile(){
-    return this._mobile;
-  }
-  
   set mobile(value) {
     let oldValue = this._mobile;
     if(value === oldValue) {
       return;
     }
+
     this._mobile = value;
     if (this._mobile) {
-      this.position = { horizontal: 'center', vertical: 'bottom' };
+      this.positionHorizontal = 'center';
     } else {
-      this.position = { horizontal: 'left', vertical: 'bottom' };
+      this.positionHorizontal = 'left';
     }
+
     this.requestUpdate('mobile', oldValue);
   }
 
-  set position(position) { 
-    this._position = position;
-
-    this._horizontalAlign = position.horizontal;
-    this._verticalAlign = position.vertical;
-  }
-
-  get position() { 
-    return this._position;
-  }
-
-  render() {
-    return html`
-      ${repeat(sortBy(this._toastList, 'counter'), (toast) => toast.id, (toast) => html`
-          <div class="toast animated" type="${toast.type}">
-
-            <!-- Toast text -->
-            <div class="flex body2 text" style=${styleMap({color: toast.textColor})}>${toast.message}</div>
-
-            <!-- Toast actions -->
-            ${!toast.actionButton ? '' : this._getActionButtonTemplate(toast)}
-
-            <!-- Dismiss button -->
-            ${toast.hideDismissBtn ? '' : html`
-              <dw-icon-button
-               buttonSize="36"
-               iconSize="18"
-               .icon="${toast.dismissIcon}"
-               @click="${() => { this.hide(toast.id); }}">
-              </dw-icon-button>
-            `}
-            
-          </div>
-        `)}
-    `;
+  get mobile(){
+    return this._mobile;
   }
 
   constructor() {
@@ -268,6 +233,32 @@ export class DwSnackbar extends layoutMixin(LitElement) {
      * by the user. So, the Toast submitted first will be shown on the top in the sequence.
     */
     this.constructor.counter = 0;
+    this.positionVertical = 'bottom';
+  }
+
+  render() {
+    return html`
+      ${repeat(sortBy(this._toastList, 'counter'), (toast) => toast.id, (toast) => html`
+        <div class="toast animated" type="${toast.type}">
+
+          <!-- Toast text -->
+          <div class="flex body2 text" style=${styleMap({color: toast.textColor})}>${toast.message}</div>
+
+          <!-- Toast actions -->
+          ${!toast.actionButton ? '' : this._getActionButtonTemplate(toast)}
+
+          <!-- Dismiss button -->
+          ${toast.hideDismissBtn ? '' : html`
+            <dw-icon-button
+              buttonSize="36"
+              iconSize="18"
+              .icon="${toast.dismissIcon}"
+              @click="${() => { this.hide(toast.id); }}">
+            </dw-icon-button>
+          `}
+        </div>
+      `)}
+    `;
   }
 
   _getActionButtonTemplate(config) { 
@@ -362,8 +353,4 @@ export function hide (id) {
 
 export function setDefaults(config){ 
   snackBar.defaultConfig = {...snackBar.defaultConfig, ...config}
-}
-
-export function setPosition(position) { 
-  return snackBar.position = position;
 }
