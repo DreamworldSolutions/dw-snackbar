@@ -26,13 +26,17 @@ import '@dreamworld/dw-button';
  * 
  * 
  * CSS varialbes
- *  --dw-toast-min-width (It's applied to desktop only. In mobile there is no minimum width.)
- *  --dw-toast-max-width (Used to set maximum width of toast. default is 768px)
- *  --dw-toast-margin (Used to set around margin in desktop. Default is 24px)
- *  --dw-toast-mobile-margin (Used to set around margin in mobile. Default is 20px)
- *  --dw-toast-color
- *  --dw-toast-bg-color
- *  --dw-toast-bg-color-warn
+ *  --dw-snackbar-min-width (It's applied to desktop only. In mobile there is no minimum width.)
+ *  --dw-snackbar-max-width (Used to set maximum width of toast. default is 768px)
+ *  --dw-snackbar-margin-top (Used to set top margin. Default is 24px for desktop and 20px for mobile)
+ *  --dw-snackbar-margin-bottom (Used to set bottom margin. Default is 24px for desktop and 20px for mobile)
+ *  --dw-snackbar-margin-left (Used to set left margin. Default is 24px for desktop and 20px for mobile)
+ *  --dw-snackbar-margin-right (Used to set right margin. Default is 24px for desktop and 20px for mobile)
+ *  --dw-snackbar-text-color
+ *  --dw-snackbar-background-color
+ *  --dw-snackbar-background-color-warn
+ *  --dw-snackbar-text-color-error
+ *  --dw-snackbar-background-color-error
  * 
  * USAGE PATTERN: 
  *   <dw-snackbar></dw-snackbar>
@@ -56,9 +60,6 @@ export class DwSnackbar extends layoutMixin(LitElement) {
           ${displayFlex};
           ${vertical};
           user-select: none;
-          --dw-icon-color: var(--dw-toast-color, var(--dw-icon-color-active-on-dark));
-          --dw-icon-color-active: var(--dw-toast-color, var(--dw-icon-color-active-on-dark));
-          --mdc-theme-on-surface: var(--dw-toast-color, var(--mdc-theme-text-primary-on-dark));
         }
 
         :host([position-horizontal='left']){
@@ -86,12 +87,15 @@ export class DwSnackbar extends layoutMixin(LitElement) {
           ${displayFlex};
           ${horizontal};
           ${centerAligned};
-          min-width: var(--dw-toast-min-width, 344px);
-          max-width: var(--dw-toast-max-width, 768px);
-          margin: var(--dw-toast-margin, 24px);
+          min-width: var(--dw-snackbar-min-width, 344px);
+          max-width: var(--dw-snackbar-max-width, 768px);
+          margin-top: var(--dw-snackbar-margin-top, 24px);
+          margin-bottom: var(--dw-snackbar-margin-bottom, 24px);
+          margin-left: var(--dw-snackbar-margin-left, 24px);
+          margin-right: var(--dw-snackbar-margin-right, 24px);
           box-sizing: border-box;
-          color: var(--dw-toast-color, var(--mdc-theme-text-primary-on-dark));
-          background-color: var(--dw-toast-bg-color, #333);
+          color: var(--dw-snackbar-text-color, var(--dw-on-surface-invert-color));
+          background-color: var(--dw-snackbar-background-color, var(--dw-surface-invert-color));
           box-sizing: border-box;
           box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
           border-radius: 4px;
@@ -99,17 +103,21 @@ export class DwSnackbar extends layoutMixin(LitElement) {
         }
 
         :host([mobile]) .toast{
-          margin: var(--dw-toast-mobile-margin, 20px);
+          margin-top: var(--dw-snackbar-margin-top, 20px);
+          margin-bottom: var(--dw-snackbar-margin-bottom, 20px);
+          margin-left: var(--dw-snackbar-margin-left, 20px);
+          margin-right: var(--dw-snackbar-margin-right, 20px);
           min-width: 0;
-          width: calc(100vw - (var(--dw-toast-mobile-margin, 20px) * 2));
+          width: calc(100vw - (var(--dw-snackbar-margin-right, 20px) + var(--dw-snackbar-margin-left, 20px)));
         }
 
         .toast[type="WARN"]{
-          background-color: var(--dw-toast-bg-color-warn, #FD9725);
+          background-color: var(--dw-snackbar-background-color-warn, #FD9725);
         }
 
         .toast[type="ERROR"]{
-          background-color: var(--mdc-theme-error, #b00020);
+          color: var(--dw-snackbar-text-color-error, var(--dw-on-surface-invert-color));
+          background-color: var(--dw-snackbar-background-color-error, var(--mdc-theme-error));
         }
 
         /* Flex items' margins won't collapse so removing top margin */

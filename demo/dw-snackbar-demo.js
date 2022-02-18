@@ -11,19 +11,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 import { LitElement, html, css } from 'lit-element';
 import { show } from '../dw-snackbar.js';
 import '@dreamworld/dw-button';
-
+import { ThemeStyle } from '@dreamworld/material-styles/theme.js';
 class DwSnackbarDemo extends LitElement {
   static get styles() {
     return [
+      ThemeStyle,
       css`
        :host{
          display: block;
-         --dw-icon-color-active-on-dark: #fff;
-         --mdc-theme-text-primary-on-dark: #fff;
+         
         }
         
         dw-snackbar{
-          --mdc-theme-primary: #bb86fc;
+          --dw-icon-color: var(--mdc-theme-text-secondary-on-primary);
+          --dw-icon-color-active: var(--mdc-theme-text-secondary-on-primary);
         }
 
         dw-button{
