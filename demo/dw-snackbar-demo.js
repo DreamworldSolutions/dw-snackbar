@@ -8,7 +8,7 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
 
-import { LitElement, html, css} from 'lit-element';
+import { LitElement, html, css } from 'lit-element';
 import { show } from '../dw-snackbar.js';
 import '@dreamworld/dw-button';
 
@@ -43,12 +43,12 @@ class DwSnackbarDemo extends LitElement {
 
       <h3>Basic</h3>
       <dw-button outlined @click="${() => this._show()}">Basic</dw-button>
-      <dw-button outlined @click="${() => this._show({hideDismissBtn: true})}">Without dismiss icon</dw-button>
-      <dw-button outlined @click="${() => this._show({ actionButton: { caption: 'Undo', callback: () => { console.log('Action completed')}}})}">With action button</dw-button>
+      <dw-button outlined @click="${() => this._show({ hideDismissBtn: true })}">Without dismiss icon</dw-button>
+      <dw-button outlined @click="${() => this._show({ actionButton: { caption: 'Undo', callback: this._actionButtonCallback } })}">With action button</dw-button>
 
       <h3>Types</h3>
-      <dw-button outlined @click="${() => this._show({type: 'WARN'})}">Warn</dw-button>
-      <dw-button outlined @click="${() => this._show({type: 'ERROR'})}">Error</dw-button>
+      <dw-button outlined @click="${() => this._show({ type: 'WARN' })}">Warn</dw-button>
+      <dw-button outlined @click="${() => this._show({ type: 'ERROR' })}">Error</dw-button>
     `;
   }
 
@@ -56,12 +56,20 @@ class DwSnackbarDemo extends LitElement {
     show({
       message: "Snackbars provide brief messages about app processes",
       onDismiss: function () { console.log('Toast is closed') },
-      timeout: 5000,
+      timeout: 15000,
       ...config,
     });
     
   }
 
+  _actionButtonCallback() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log('Action completed');
+        resolve()
+      }, 10000)
+    });
+  }
 }
 
 window.customElements.define('dw-snackbar-demo', DwSnackbarDemo);

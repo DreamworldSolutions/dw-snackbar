@@ -189,6 +189,9 @@ export class DwSnackbar extends layoutMixin(LitElement) {
         attribute: 'position-vertical' 
       },
 
+      _disableButton: {
+        type: Boolean
+      }
     };
   }
 
@@ -268,17 +271,17 @@ export class DwSnackbar extends layoutMixin(LitElement) {
     if (config.actionButton.link) { 
       return html`
         <a href="${config.actionButton.link}">
-          <dw-button .label="${config.actionButton.caption}" @click="${() => { this.hide(config.id); }}"></dw-button>
+          <dw-button .label="${config.actionButton.caption}" ?disabled=${this._disableButton} @click="${() => { this.hide(config.id); }}"></dw-button>
         </a>
       `
     }
-
-    return html`<dw-button .label="${config.actionButton.caption}" @click="${() => { this._onAction(config) }}"></dw-button>`
+    return html`<dw-button .label="${config.actionButton.caption}" ?disabled=${this._disableButton} @click="${() => { this._onAction(config) }}"></dw-button>`
   }
 
-  _onAction(config) { 
-    this.hide(config.id);
-    config.actionButton.callback && config.actionButton.callback(config.id);
+  async _onAction(config) { 
+    this._disableButton = true;
+    await config.actionButton.callback(config.id);
+    this._disableButton = false;
   }
 
   /**
