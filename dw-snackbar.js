@@ -9,7 +9,6 @@ import { displayFlex, vertical, horizontal } from '@dreamworld/flex-layout/flex-
 import { centerAligned } from '@dreamworld/flex-layout/flex-layout-alignment-literals';
 import { flexLayout } from '@dreamworld/flex-layout/flex-layout';
 import { Typography } from '@dreamworld/material-styles/typography';
-import { styleMap } from 'lit-html/directives/style-map.js';
 
 // Custom elements
 import '@dreamworld/dw-icon-button';
@@ -221,7 +220,6 @@ export class DwSnackbar extends layoutMixin(LitElement) {
       timeout: 10000,
       hideDismissBtn: false,
       dismissIcon: 'close',
-      textColor: 'var(--dw-toast-color, var(--mdc-theme-text-primary-on-dark))'
     };
 
     snackBar = this;
@@ -242,19 +240,24 @@ export class DwSnackbar extends layoutMixin(LitElement) {
         <div class="toast animated" type="${toast.type}">
 
           <!-- Toast text -->
-          <div class="flex body2 text" style=${styleMap({color: toast.textColor})}>${toast.message}</div>
+          <div class="flex body2 text">${toast.message}</div>
 
           <!-- Toast actions -->
           ${!toast.actionButton ? '' : this._getActionButtonTemplate(toast)}
-
           <!-- Dismiss button -->
-          ${toast.hideDismissBtn ? '' : html`
-            <dw-icon-button
-              buttonSize="36"
-              iconSize="18"
-              .icon="${toast.dismissIcon}"
-              @click="${() => { this.hide(toast.id); }}">
-            </dw-icon-button>
+          ${toast.hideDismissBtn ? '' : 
+            toast.dismissText ? html`
+              <dw-button 
+                .label="${toast.dismissText}" 
+                @click="${() => { this.hide(toast.id); }}">
+              </dw-button>
+            ` : html`
+              <dw-icon-button
+                buttonSize="36"
+                iconSize="18"
+                .icon="${toast.dismissIcon}"
+                @click="${() => { this.hide(toast.id); }}">
+              </dw-icon-button>
           `}
         </div>
       `)}
