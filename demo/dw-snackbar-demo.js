@@ -8,22 +8,23 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
 
-import { LitElement, html, css} from 'lit-element';
-import { show, setPosition } from '../dw-snackbar.js';
+import { LitElement, html, css } from 'lit-element';
+import { show } from '../dw-snackbar.js';
 import '@dreamworld/dw-button';
-
+import { ThemeStyle } from '@dreamworld/material-styles/theme.js';
 class DwSnackbarDemo extends LitElement {
   static get styles() {
     return [
+      ThemeStyle,
       css`
        :host{
          display: block;
-         --dw-icon-color-active-on-dark: #fff;
-         --mdc-theme-text-primary-on-dark: #fff;
+         
         }
         
         dw-snackbar{
-          --mdc-theme-primary: #bb86fc;
+          --dw-icon-color: var(--mdc-theme-text-secondary-on-primary);
+          --dw-icon-color-active: var(--mdc-theme-text-secondary-on-primary);
         }
 
         dw-button{
@@ -43,36 +44,33 @@ class DwSnackbarDemo extends LitElement {
 
       <h3>Basic</h3>
       <dw-button outlined @click="${() => this._show()}">Basic</dw-button>
-      <dw-button outlined @click="${() => this._show({hideDismissBtn: true})}">Without dismiss icon</dw-button>
-      <dw-button outlined @click="${() => this._show({ actionButton: { caption: 'Undo', callback: () => { alert('Action completed')}}})}">With action button</dw-button>
-
-      <h3>Positions</h3>
-      <dw-button outlined @click="${() => { setPosition({ horizontal: 'center', vertical: 'bottom' }); this._show({}, false) }}">Center align</dw-button>
-      <dw-button outlined @click="${() => { setPosition({ horizontal: 'right', vertical: 'bottom' }); this._show({}, false) }}">Right align</dw-button>
-      <dw-button outlined @click="${() => { setPosition({ horizontal: 'left', vertical: 'top' }); this._show({}, false) }}">Top left align</dw-button>
-      <dw-button outlined @click="${() => { setPosition({ horizontal: 'right', vertical: 'top' }); this._show({}, false) }}">Top right align</dw-button>
-      <dw-button outlined @click="${() => { setPosition({horizontal: 'center', vertical: 'top'}); this._show({}, false) }}">Top center align</dw-button>
+      <dw-button outlined @click="${() => this._show({ hideDismissBtn: true })}">Without dismiss icon</dw-button>
+      <dw-button outlined @click="${() => this._show({ actionButton: { caption: 'Undo', callback: this._actionButtonCallback } })}">With action button</dw-button>
 
       <h3>Types</h3>
-      <dw-button outlined @click="${() => this._show({type: 'WARN'})}">Warn</dw-button>
-      <dw-button outlined @click="${() => this._show({type: 'ERROR'})}">Error</dw-button>
+      <dw-button outlined @click="${() => this._show({ type: 'WARN' })}">Warn</dw-button>
+      <dw-button outlined @click="${() => this._show({ type: 'ERROR' })}">Error</dw-button>
     `;
   }
 
-  _show(config, setDefaultPosition = true) {
-    if (setDefaultPosition) { 
-      setPosition({ horizontal: 'left', vertical: 'bottom' });
-    }
-
+  _show(config) {
     show({
       message: "Snackbars provide brief messages about app processes",
       onDismiss: function () { console.log('Toast is closed') },
-      timeout: 5000,
+      timeout: 15000,
       ...config,
     });
     
   }
 
+  _actionButtonCallback() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log('Action completed');
+        resolve()
+      }, 10000)
+    });
+  }
 }
 
 window.customElements.define('dw-snackbar-demo', DwSnackbarDemo);
