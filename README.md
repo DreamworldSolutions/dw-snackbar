@@ -23,7 +23,7 @@ When Mobile mode is activated, Toast is alawys shown in the full-width of the sc
 
 ## APIs
 
-### setDefaults(config)
+### `setDefaults(config)`
 Used to set default values for config used for the `show`.
 
 
@@ -59,25 +59,25 @@ No op, if no snackbar is found with that id. This can happen when Snackbar is au
 
 | Name  | Description |
 | ----  | ----------- |
-| `positionHorizontal` | Set position Horizontally. Default value: `left` (for desktop), `center` (for mobile). posible values: `left`, `center`, and `right`|
-| `positionVertical` | Set position Vertically. Default value: `bottom`. posible values: `top`, and `bottom` |
+| positionHorizontal | Set position Horizontally. Default value: `left` (for desktop), `center` (for mobile). posible values: `left`, `center`, and `right`|
+| positionVertical | Set position Vertically. Default value: `bottom`. posible values: `top`, and `bottom` |
 
 
 ## CSS Properties
 
 | Name  | Description |
 | ----  | ----------- |
-| `--dw-snackbar-text-color` | Color of the snackbar text |
-| `--dw-snackbar-text-color-error` | Color of the snackbar text when type is `error` |
-| `--dw-snackbar-background-color` | Background color of the snackbar |
-| `--dw-snackbar-background-color-warn` | Background color of the `warn` type snackbar |
-| `--dw-snackbar-background-color-error` | Background color of the `error` type snackbar |
-| `--dw-snackbar-margin-top` | Used to set top margin. Default is 24px for desktop and 20px for mobile. |
-| `--dw-snackbar-margin-bottom` | Used to set bottom margin. Default is 24px for desktop and 20px for mobile. |
-| `--dw-snackbar-margin-left` | Used to set left margin. Default is 24px for desktop and 20px for mobile |
-| `--dw-snackbar-margin-right` | Used to set right margin. Default is 24px for desktop and 20px for mobile. |
-| `--dw-snackbar-min-width` | Min Width for a Toast. Default value is `344px` |
-| `--dw-snackbar-max-width` | Max Width for a Toast. Default value is `768px` |
+| --dw-snackbar-text-color | Color of the snackbar text |
+| --dw-snackbar-text-color-error | Color of the snackbar text when type is `error` |
+| --dw-snackbar-background-color | Background color of the snackbar |
+| --dw-snackbar-background-color-warn | Background color of the `warn` type snackbar |
+| --dw-snackbar-background-color-error | Background color of the `error` type snackbar |
+| --dw-snackbar-margin-top | Used to set top margin. Default is 24px for desktop and 20px for mobile. |
+| --dw-snackbar-margin-bottom | Used to set bottom margin. Default is 24px for desktop and 20px for mobile. |
+| --dw-snackbar-margin-left | Used to set left margin. Default is 24px for desktop and 20px for mobile |
+| --dw-snackbar-margin-right | Used to set right margin. Default is 24px for desktop and 20px for mobile. |
+| --dw-snackbar-min-width | Min Width for a Toast. Default value is `344px` |
+| --dw-snackbar-max-width | Max Width for a Toast. Default value is `768px` |
 
 
 ### Road map
