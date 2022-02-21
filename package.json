@@ -24,7 +24,7 @@
     "@dreamworld/dw-button": "^2.1.0",
     "@dreamworld/dw-icon-button": "^2.1.0",
     "@dreamworld/flex-layout": "^1.1.0",
-    "@dreamworld/material-styles": "^1.1.1",
+    "@dreamworld/material-styles": "^2.1.0-development.3",
     "@dreamworld/pwa-helpers": "^1.7.1",
     "lit-element": "^2.2.1",
     "lodash-es": "^4.17.15"
