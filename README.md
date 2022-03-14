@@ -38,11 +38,13 @@ Used to show a snackbar. `config` is a plain-JS Object as follows:
    timeout: 10000,  // (Optional) Time is in milliseconds after which message should be automatically dismissed. Set to `0` to prevent automatic dismiss. Default: 10000
    hideDismissBtn: true,  // (Optional) Set `true` to hide (not show) dismiss button. Default: false
    dismissIcon: '', // (Optional) Name of the Dismiss icon to be used. Default value: 'clear'
+   dismissText: '', // (Optional) Dismiss button Text/Caption. It's exclusive to `dismissIcon`. So, `dismissIcon` isn't used when this is specified.
    onDismiss: callback, //(Optional), A Callback function when snackbar is dimissed, call in both cases: Either automatically closed or manually. It's first agument will be `id`.
    actionButton: { //(Optional), When actionButton spec is specified
      caption: '',  // Button Text/Caption
      callback: callBack, // callback function to be invoked when user clicks on the action button. Callback method will receive `id` in the argument. ActionButton is disabled while it’s callback execution is in progress.
-     link: link // Link to be opened when user clicks on the button. Link will be opened in the current window. Actually action button will be rendered as Link button. It's exclusive to `callback`. So, `callback` isn't invoked when this is specified.
+     link: link // Link to be opened when user clicks on the button. Link will be opened based on `linkTarget`. Actually action button will be rendered as Link button.
+     linkTarget: '' // (Optional) It used to set Target of link. Possible values '_blank', '_self', '_parent', '_top'.
    }
  }
 ```

@@ -32,11 +32,11 @@ import '@dreamworld/dw-button';
  *  --dw-snackbar-margin-bottom (Used to set bottom margin. Default is 24px for desktop and 20px for mobile)
  *  --dw-snackbar-margin-left (Used to set left margin. Default is 24px for desktop and 20px for mobile)
  *  --dw-snackbar-margin-right (Used to set right margin. Default is 24px for desktop and 20px for mobile)
- *  --dw-snackbar-text-color
- *  --dw-snackbar-background-color
- *  --dw-snackbar-background-color-warn
- *  --dw-snackbar-text-color-error
- *  --dw-snackbar-background-color-error
+ *  --dw-snackbar-text-color (Used to set text color of the snackbar)
+ *  --dw-snackbar-background-color (Used to set background color of the snackbar)
+ *  --dw-snackbar-background-color-warn (Used to set background color of the snackbar when type is `warn`)
+ *  --dw-snackbar-text-color-error  (Used to set text color of the snackbar when type is `error)
+ *  --dw-snackbar-background-color-error (Used to set background color of the snackbar when type is `error`)
  * 
  * USAGE PATTERN: 
  *   <dw-snackbar></dw-snackbar>
@@ -243,6 +243,18 @@ export class DwSnackbar extends layoutMixin(LitElement) {
     */
     this.constructor.counter = 0;
     this.positionVertical = 'bottom';
+
+    window.addEventListener('resize', this._getLayout.bind(this))
+  }
+
+  _getLayout() {
+    if (window.innerWidth > 768 && this.mobile) {
+      this.mobile = false;
+    }
+
+    if (window.innerWidth < 768 && !this.mobile) {
+      this.mobile = true;
+    }
   }
 
   render() {
@@ -278,8 +290,8 @@ export class DwSnackbar extends layoutMixin(LitElement) {
   _getActionButtonTemplate(config) { 
     if (config.actionButton.link) { 
       return html`
-        <a href="${config.actionButton.link}">
-          <dw-button .label="${config.actionButton.caption}" ?disabled=${this._disableButton} @click="${() => { this.hide(config.id); }}"></dw-button>
+        <a href="${config.actionButton.link}" target=${config.actionButton.linkTarget ? config.actionButton.linkTarget : ''}>
+          <dw-button .label="${config.actionButton.caption}" @click="${() => { this._onAction(config) }}"></dw-button>
         </a>
       `
     }
