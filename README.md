@@ -74,10 +74,8 @@ No op, if no snackbar is found with that id. This can happen when Snackbar is au
 | --dw-snackbar-background-color | Background color of the snackbar |
 | --dw-snackbar-background-color-warn | Background color of the `warn` type snackbar |
 | --dw-snackbar-background-color-error | Background color of the `error` type snackbar |
-| --dw-snackbar-margin-top | Used to set top margin. Default is 24px for desktop and 20px for mobile. |
-| --dw-snackbar-margin-bottom | Used to set bottom margin. Default is 24px for desktop and 20px for mobile. |
-| --dw-snackbar-margin-left | Used to set left margin. Default is 24px for desktop and 20px for mobile |
-| --dw-snackbar-margin-right | Used to set right margin. Default is 24px for desktop and 20px for mobile. |
+| --dw-snackbar-vertical-margin | Used to set vertical(top and bottom) margin. Default is 24px for desktop and 20px for mobile. |
+| --dw-snackbar-horizontal-margin | Used to set horizontal(left and right) margin. Default is 24px for desktop and 20px for mobile |
 | --dw-snackbar-min-width | Min Width for a Toast. Default value is `344px` |
 | --dw-snackbar-max-width | Max Width for a Toast. Default value is `768px` |
 

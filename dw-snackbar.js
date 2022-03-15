@@ -28,10 +28,8 @@ import '@dreamworld/dw-button';
  * CSS varialbes
  *  --dw-snackbar-min-width (It's applied to desktop only. In mobile there is no minimum width.)
  *  --dw-snackbar-max-width (Used to set maximum width of toast. default is 768px)
- *  --dw-snackbar-margin-top (Used to set top margin. Default is 24px for desktop and 20px for mobile)
- *  --dw-snackbar-margin-bottom (Used to set bottom margin. Default is 24px for desktop and 20px for mobile)
- *  --dw-snackbar-margin-left (Used to set left margin. Default is 24px for desktop and 20px for mobile)
- *  --dw-snackbar-margin-right (Used to set right margin. Default is 24px for desktop and 20px for mobile)
+ *  --dw-snackbar-vertical-margin (Used to set vertical(top and bottom) margin. Default is 24px for desktop and 20px for mobile)
+ *  --dw-snackbar-horizontal-margin (Used to set horizontal(left and right) margin. Default is 24px for desktop and 20px for mobile)
  *  --dw-snackbar-text-color (Used to set text color of the snackbar)
  *  --dw-snackbar-background-color (Used to set background color of the snackbar)
  *  --dw-snackbar-background-color-warn (Used to set background color of the snackbar when type is `warn`)
@@ -89,10 +87,7 @@ export class DwSnackbar extends layoutMixin(LitElement) {
           ${centerAligned};
           min-width: var(--dw-snackbar-min-width, 344px);
           max-width: var(--dw-snackbar-max-width, 768px);
-          margin-top: var(--dw-snackbar-margin-top, 24px);
-          margin-bottom: var(--dw-snackbar-margin-bottom, 24px);
-          margin-left: var(--dw-snackbar-margin-left, 24px);
-          margin-right: var(--dw-snackbar-margin-right, 24px);
+          margin: var(--dw-snackbar-vertical-margin, 24px) var(--dw-snackbar-horizontal-margin, 24px);
           box-sizing: border-box;
           color: var(--dw-snackbar-text-color, var(--dw-on-surface-invert-color));
           background-color: var(--dw-snackbar-background-color, var(--dw-surface-invert-color));
@@ -103,12 +98,9 @@ export class DwSnackbar extends layoutMixin(LitElement) {
         }
 
         :host([mobile]) .toast{
-          margin-top: var(--dw-snackbar-margin-top, 20px);
-          margin-bottom: var(--dw-snackbar-margin-bottom, 20px);
-          margin-left: var(--dw-snackbar-margin-left, 20px);
-          margin-right: var(--dw-snackbar-margin-right, 20px);
+          margin: var(--dw-snackbar-vertical-margin, 20px) var(--dw-snackbar-horizontal-margin, 20px);
           min-width: 0;
-          width: calc(100vw - (var(--dw-snackbar-margin-right, 20px) + var(--dw-snackbar-margin-left, 20px)));
+          width: calc(100vw - (var(--dw-snackbar-horizontal-margin, 20px) * 2));
         }
 
         .toast[type="WARN"]{
