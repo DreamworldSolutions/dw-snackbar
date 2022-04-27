@@ -2,7 +2,7 @@ import { html, css } from "lit-element";
 import { LitElement } from "@dreamworld/pwa-helpers/lit-element.js";
 import { layoutMixin } from "@dreamworld/pwa-helpers/layout-mixin.js";
 import { repeat } from "lit-html/directives/repeat";
-import sortBy from "lodash-es/sortBy";
+import { sortBy, debounce } from "lodash-es";
 
 // Styles
 import {
@@ -205,10 +205,6 @@ export class DwSnackbar extends layoutMixin(LitElement) {
         reflect: true,
         attribute: "position-vertical",
       },
-
-      _disableButton: {
-        type: Boolean,
-      },
     };
   }
 
@@ -240,6 +236,7 @@ export class DwSnackbar extends layoutMixin(LitElement) {
       timeout: 10000,
       hideDismissBtn: false,
       dismissIcon: "close",
+      actionButtondisabled: false
     };
 
     snackBar = this;
@@ -252,18 +249,29 @@ export class DwSnackbar extends layoutMixin(LitElement) {
      */
     this.constructor.counter = 0;
     this.positionVertical = "bottom";
-
-    window.addEventListener("resize", this._getLayout.bind(this));
+    this._onResize = this._debounceResize();
   }
 
-  _getLayout() {
-    if (window.innerWidth > 768 && this.mobile) {
-      this.mobile = false;
-    }
+  connectedCallback() {
+    super.connectedCallback();
+    window.addEventListener("resize", this._onResize);
+  }
 
-    if (window.innerWidth < 768 && !this.mobile) {
-      this.mobile = true;
-    }
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    window.removeEventListener("resize", this._onResize);
+  }
+
+  _debounceResize() {
+    return debounce(() => {
+      if (window.innerWidth > 768 && this.mobile) {
+        this.mobile = false;
+      }
+
+      if (window.innerWidth < 768 && !this.mobile) {
+        this.mobile = true;
+      }
+    }, 200);
   }
 
   render() {
@@ -328,7 +336,7 @@ export class DwSnackbar extends layoutMixin(LitElement) {
     }
     return html`<dw-button
       .label="${config.actionButton.caption}"
-      ?disabled=${this._disableButton}
+      ?disabled=${config.actionButtondisabled}
       @click="${() => {
         this._onAction(config);
       }}"
@@ -336,9 +344,21 @@ export class DwSnackbar extends layoutMixin(LitElement) {
   }
 
   async _onAction(config) {
-    this._disableButton = true;
+    this._toastList = {
+      ...this._toastList,
+      [config.id]: {
+        ...config,
+        actionButtondisabled: true
+      }
+    };
     await config.actionButton.callback(config.id);
-    this._disableButton = false;
+    this._toastList = {
+      ...this._toastList,
+      [config.id]: {
+        ...config,
+        actionButtondisabled: false
+      }
+    };
   }
 
   /**
