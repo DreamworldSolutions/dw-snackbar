@@ -205,6 +205,14 @@ export class DwSnackbar extends layoutMixin(LitElement) {
         reflect: true,
         attribute: "position-vertical",
       },
+
+      /** 
+       * It's a registry which keeps record of the toasts for whom action buttons are disabled.
+       * Format: { $toastId: true }
+       */
+      _disabledButtons: {
+        type: Object
+      }
     };
   }
 
@@ -249,7 +257,7 @@ export class DwSnackbar extends layoutMixin(LitElement) {
      */
     this.constructor.counter = 0;
     this.positionVertical = "bottom";
-    this._onResize = this._debounceResize();
+    this._onResize = debounce(this._onResizeDebounce, 200);
   }
 
   connectedCallback() {
@@ -262,16 +270,14 @@ export class DwSnackbar extends layoutMixin(LitElement) {
     window.removeEventListener("resize", this._onResize);
   }
 
-  _debounceResize() {
-    return debounce(() => {
-      if (window.innerWidth > 768 && this.mobile) {
-        this.mobile = false;
-      }
+  _onResizeDebounce() {
+    if (window.innerWidth > 768 && this.mobile) {
+      this.mobile = false;
+    }
 
-      if (window.innerWidth < 768 && !this.mobile) {
-        this.mobile = true;
-      }
-    }, 200);
+    if (window.innerWidth < 768 && !this.mobile) {
+      this.mobile = true;
+    }
   }
 
   render() {
@@ -336,7 +342,7 @@ export class DwSnackbar extends layoutMixin(LitElement) {
     }
     return html`<dw-button
       .label="${config.actionButton.caption}"
-      ?disabled=${config.actionButtondisabled}
+      ?disabled=${this._disabledButtons && this._disabledButtons[config.id]}
       @click="${() => {
         this._onAction(config);
       }}"
@@ -344,21 +350,14 @@ export class DwSnackbar extends layoutMixin(LitElement) {
   }
 
   async _onAction(config) {
-    this._toastList = {
-      ...this._toastList,
-      [config.id]: {
-        ...config,
-        actionButtondisabled: true
-      }
+    this._disabledButtons = {
+      ...this._disabledButtons,
+      [config.id]: true
     };
     await config.actionButton.callback(config.id);
-    this._toastList = {
-      ...this._toastList,
-      [config.id]: {
-        ...config,
-        actionButtondisabled: false
-      }
-    };
+    let disabledButtons = {...this._disabledButtons};
+    delete disabledButtons[config.id];
+    this._disabledButtons = disabledButtons
   }
 
   /**
