@@ -60,12 +60,11 @@
   dependencies:
     lit-element "^2.1.0"
 
-"@dreamworld/material-styles@^1.1.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@dreamworld/material-styles/-/material-styles-1.2.1.tgz#00db7a937787597f48a3aee7906641ed9d6ac777"
-  integrity sha512-vxYOA6s0vRj7Un3ckgMk/ntmvzNI9TUJHVEukD2YqYt/Es6fInHkSI7DjZjUg4FZPVN28ws+NjLzr+C/BcJ4yg==
+"@dreamworld/material-styles@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@dreamworld/material-styles/-/material-styles-2.2.0.tgz#45d232cdd1b9b063a447d96316c9f9f08a16f5c4"
+  integrity sha512-26ZnFaTZD0NdehrSuzJ7J1PLGv+Mo/rNVGegwIAlT49c3/c3rLJ6DbRfaTLAu4cKO2JWwkcZ01unywQet1QiOQ==
   dependencies:
-    "@polymer/font-roboto" "^3.0.2"
     lit-element "^2.2.0"
 
 "@dreamworld/pwa-helpers@^1.0.0", "@dreamworld/pwa-helpers@^1.7.1", "@dreamworld/pwa-helpers@^1.8.0":
@@ -302,11 +301,6 @@
   dependencies:
     "@octokit/openapi-types" "^2.2.0"
     "@types/node" ">= 8"
-
-"@polymer/font-roboto@^3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@polymer/font-roboto/-/font-roboto-3.0.2.tgz#80cdaa7225db2359130dfb2c6d9a3be1820020c3"
-  integrity sha512-tx5TauYSmzsIvmSqepUPDYbs4/Ejz2XbZ1IkD7JEGqkdNUJlh+9KU85G56Tfdk/xjEZ8zorFfN09OSwiMrIQWA==
 
 "@semantic-release/commit-analyzer@^8.0.0":
   version "8.0.1"
