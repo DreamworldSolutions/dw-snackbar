@@ -1,7 +1,6 @@
 import { html, css } from "lit-element";
 import { LitElement } from "@dreamworld/pwa-helpers/lit-element.js";
 import { layoutMixin } from "@dreamworld/pwa-helpers/layout-mixin.js";
-import { repeat } from "lit-html/directives/repeat";
 import { sortBy, debounce } from "lodash-es";
 
 // Styles
@@ -45,6 +44,9 @@ import "@dreamworld/dw-button";
  *   import {show as showSnackBar} from '@dreamworld/dw-snackbar/dw-snackbar.js';
  *
  *    showSnackBar({ message: ${message}), actionButton: {caption: ${buttonCaption}, callback} });
+ * 
+ * # TODO
+ *  - When this component convert to lit(v2.0.0) use repeat directive instead of Array.map prototype to render multiple toast.
  */
 
 let snackBar;
@@ -93,17 +95,11 @@ export class DwSnackbar extends layoutMixin(LitElement) {
           margin: var(--dw-snackbar-vertical-margin, 24px)
             var(--dw-snackbar-horizontal-margin, 24px);
           box-sizing: border-box;
-          color: var(
-            --dw-snackbar-text-color,
-            var(--dw-on-surface-invert-color)
-          );
-          background-color: var(
-            --dw-snackbar-background-color,
-            var(--dw-surface-invert-color)
-          );
+          color: var(--dw-snackbar-text-color, var(--dw-on-surface-invert-color));
+          background-color: var(--dw-snackbar-background-color, var(--dw-surface-invert-color));
           box-sizing: border-box;
-          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
-            0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14),
+            0 1px 18px 0 rgba(0, 0, 0, 0.12);
           border-radius: 4px;
           min-height: 48px;
         }
@@ -120,14 +116,8 @@ export class DwSnackbar extends layoutMixin(LitElement) {
         }
 
         .toast[type="ERROR"] {
-          color: var(
-            --dw-snackbar-text-color-error,
-            var(--dw-on-surface-invert-color)
-          );
-          background-color: var(
-            --dw-snackbar-background-color-error,
-            var(--mdc-theme-error)
-          );
+          color: var(--dw-snackbar-text-color-error, var(--dw-on-surface-invert-color));
+          background-color: var(--dw-snackbar-background-color-error, var(--mdc-theme-error));
         }
 
         /* Flex items' margins won't collapse so removing top margin */
@@ -206,13 +196,13 @@ export class DwSnackbar extends layoutMixin(LitElement) {
         attribute: "position-vertical",
       },
 
-      /** 
+      /**
        * It's a registry which keeps record of the toasts for whom action buttons are disabled.
        * Format: { $toastId: true }
        */
       _disabledButtons: {
-        type: Object
-      }
+        type: Object,
+      },
     };
   }
 
@@ -244,7 +234,7 @@ export class DwSnackbar extends layoutMixin(LitElement) {
       timeout: 10000,
       hideDismissBtn: false,
       dismissIcon: "close",
-      actionButtondisabled: false
+      actionButtondisabled: false,
     };
 
     snackBar = this;
@@ -282,9 +272,7 @@ export class DwSnackbar extends layoutMixin(LitElement) {
 
   render() {
     return html`
-      ${repeat(
-        sortBy(this._toastList, "counter"),
-        (toast) => toast.id,
+      ${sortBy(this._toastList, "counter").map(
         (toast) => html`
           <div class="toast animated" type="${toast.type}">
             <!-- Toast text -->
@@ -327,9 +315,7 @@ export class DwSnackbar extends layoutMixin(LitElement) {
       return html`
         <a
           href="${config.actionButton.link}"
-          target=${config.actionButton.linkTarget
-            ? config.actionButton.linkTarget
-            : ""}
+          target=${config.actionButton.linkTarget ? config.actionButton.linkTarget : ""}
         >
           <dw-button
             .label="${config.actionButton.caption}"
@@ -352,12 +338,12 @@ export class DwSnackbar extends layoutMixin(LitElement) {
   async _onAction(config) {
     this._disabledButtons = {
       ...this._disabledButtons,
-      [config.id]: true
+      [config.id]: true,
     };
     await config.actionButton.callback(config.id);
-    let disabledButtons = {...this._disabledButtons};
+    let disabledButtons = { ...this._disabledButtons };
     delete disabledButtons[config.id];
-    this._disabledButtons = disabledButtons
+    this._disabledButtons = disabledButtons;
   }
 
   /**

@@ -21,8 +21,8 @@
   },
   "homepage": "https://github.com/DreamworldSolutions/dw-snackbar#readme",
   "dependencies": {
-    "@dreamworld/dw-button": "^2.1.0",
-    "@dreamworld/dw-icon-button": "^2.1.0",
+    "@dreamworld/dw-button": "^2.2.0",
+    "@dreamworld/dw-icon-button": "^2.4.0",
     "@dreamworld/flex-layout": "^1.1.0",
     "@dreamworld/material-styles": "^2.2.0",
     "@dreamworld/pwa-helpers": "^1.7.1",
