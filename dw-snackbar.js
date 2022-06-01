@@ -1,5 +1,6 @@
 import { html, css } from "lit-element";
-import { LitElement } from "@dreamworld/pwa-helpers/lit-element.js";
+import { LitElement } from "@dreamworld/pwa-helpers/lit-element";
+import { repeat } from "lit-html/directives/repeat";
 import { layoutMixin } from "@dreamworld/pwa-helpers/layout-mixin.js";
 import { sortBy, debounce } from "lodash-es";
 
@@ -272,7 +273,9 @@ export class DwSnackbar extends layoutMixin(LitElement) {
 
   render() {
     return html`
-      ${sortBy(this._toastList, "counter").map(
+      ${repeat(
+        sortBy(this._toastList, "counter"),
+        (toast) => toast.id,
         (toast) => html`
           <div class="toast animated" type="${toast.type}">
             <!-- Toast text -->
