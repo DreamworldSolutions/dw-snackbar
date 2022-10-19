@@ -22,10 +22,10 @@
   },
   "homepage": "https://github.com/DreamworldSolutions/dw-snackbar#readme",
   "dependencies": {
-    "@dreamworld/dw-button": "https://github.com/DreamworldSolutions/dw-button.git#feature/upgrade-to-lit",
-    "@dreamworld/dw-icon-button": "https://github.com/DreamworldSolutions/dw-icon-button.git#feature/upgrade-lit",
-    "@dreamworld/material-styles": "https://github.com/DreamworldSolutions/material-styles.git#feature/upgrade-to-lit",
-    "@dreamworld/pwa-helpers": "^1.13.1",
+    "@dreamworld/dw-button": "^3.0.0",
+    "@dreamworld/dw-icon-button": "^3.0.0",
+    "@dreamworld/material-styles": "^3.1.0",
+    "@dreamworld/pwa-helpers": "^1.14.0",
     "lodash-es": "^4.17.15"
   },
   "devDependencies": {
