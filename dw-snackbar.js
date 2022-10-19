@@ -1,17 +1,9 @@
-import { html, css } from "lit-element";
-import { LitElement } from "@dreamworld/pwa-helpers/lit-element";
-import { repeat } from "lit-html/directives/repeat";
+import { LitElement, html, css } from '@dreamworld/pwa-helpers/lit.js';
+import { repeat } from 'lit/directives/repeat.js';
 import { layoutMixin } from "@dreamworld/pwa-helpers/layout-mixin.js";
 import { sortBy, debounce } from "lodash-es";
 
 // Styles
-import {
-  displayFlex,
-  vertical,
-  horizontal,
-} from "@dreamworld/flex-layout/flex-layout-literals";
-import { centerAligned } from "@dreamworld/flex-layout/flex-layout-alignment-literals";
-import { flexLayout } from "@dreamworld/flex-layout/flex-layout";
 import { Typography } from "@dreamworld/material-styles/typography";
 
 // Custom elements
@@ -56,13 +48,12 @@ export class DwSnackbar extends layoutMixin(LitElement) {
   static get styles() {
     return [
       Typography,
-      flexLayout,
       css`
         :host {
           position: fixed;
           z-index: 999;
-          ${displayFlex};
-          ${vertical};
+          display: flex;
+          flex-direction: column;
           user-select: none;
         }
 
@@ -88,9 +79,9 @@ export class DwSnackbar extends layoutMixin(LitElement) {
         }
 
         .toast {
-          ${displayFlex};
-          ${horizontal};
-          ${centerAligned};
+          display: flex;
+          flex-direction: row;
+          align-items: center;
           min-width: var(--dw-snackbar-min-width, 344px);
           max-width: var(--dw-snackbar-max-width, 768px);
           margin: var(--dw-snackbar-vertical-margin, 24px)
