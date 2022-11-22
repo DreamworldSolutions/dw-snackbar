@@ -1,5 +1,5 @@
-import { LitElement, html, css } from '@dreamworld/pwa-helpers/lit.js';
-import { repeat } from 'lit/directives/repeat.js';
+import { LitElement, html, css } from "@dreamworld/pwa-helpers/lit.js";
+import { repeat } from "lit/directives/repeat.js";
 import { layoutMixin } from "@dreamworld/pwa-helpers/layout-mixin.js";
 import { sortBy, debounce } from "lodash-es";
 
@@ -37,7 +37,7 @@ import "@dreamworld/dw-button";
  *   import {show as showSnackBar} from '@dreamworld/dw-snackbar/dw-snackbar.js';
  *
  *    showSnackBar({ message: ${message}), actionButton: {caption: ${buttonCaption}, callback} });
- * 
+ *
  * # TODO
  *  - When this component convert to lit(v2.0.0) use repeat directive instead of Array.map prototype to render multiple toast.
  */
