@@ -88,7 +88,7 @@ export class DwSnackbar extends layoutMixin(LitElement) {
             var(--dw-snackbar-horizontal-margin, 24px);
           box-sizing: border-box;
           color: var(--dw-snackbar-text-color, var(--dw-on-surface-invert-color));
-          background-color: var(--dw-snackbar-background-color, var(--dw-surface-invert-color));
+          background-color: var(--mdc-theme-on-surface, var(--dw-surface-invert-color));
           box-sizing: border-box;
           box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14),
             0 1px 18px 0 rgba(0, 0, 0, 0.12);
