@@ -96,6 +96,10 @@ export class DwSnackbar extends layoutMixin(LitElement) {
           min-height: 48px;
         }
 
+        .flex {
+          flex: 1;
+        }
+
         :host([mobile]) .toast {
           margin: var(--dw-snackbar-vertical-margin, 20px)
             var(--dw-snackbar-horizontal-margin, 20px);
