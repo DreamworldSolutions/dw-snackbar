@@ -2,6 +2,7 @@
   "name": "@dreamworld/dw-snackbar",
   "version": "0.0.0-development",
   "description": "",
+  "type": "module",
   "main": "dw-snackbar.js",
   "scripts": {
     "start": "wds --node-resolve --app-index demo/index.html --open --watch",

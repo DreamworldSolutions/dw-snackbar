@@ -402,7 +402,7 @@ export class DwSnackbar extends layoutMixin(LitElement) {
   }
 }
 
-window.customElements.define("dw-snackbar", DwSnackbar);
+customElements.define("dw-snackbar", DwSnackbar);
 
 function validateSnackBarExists() {
   if (!snackBar) {
