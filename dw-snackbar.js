@@ -4,7 +4,7 @@ import { layoutMixin } from "@dreamworld/pwa-helpers/layout-mixin.js";
 import { sortBy, debounce } from "lodash-es";
 
 // Styles
-import { Typography } from "@dreamworld/material-styles/typography";
+import { Typography } from "@dreamworld/material-styles/typography.js";
 
 // Custom elements
 import "@dreamworld/dw-icon-button";
