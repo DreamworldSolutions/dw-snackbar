@@ -140,6 +140,10 @@ export class DwSnackbar extends layoutMixin(LitElement) {
           margin-right: 8px;
         }
 
+        dw-icon-button {
+          --mdc-icon-size: 18px;
+        }
+
         a {
           text-decoration: none;
         }
@@ -293,8 +297,6 @@ export class DwSnackbar extends layoutMixin(LitElement) {
                 `
               : html`
                   <dw-icon-button
-                    buttonSize="36"
-                    iconSize="18"
                     .icon="${toast.dismissIcon}"
                     @click="${() => {
                       this.hide(toast.id);

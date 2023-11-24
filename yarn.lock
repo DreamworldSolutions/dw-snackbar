@@ -23,10 +23,10 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@dreamworld/dw-button@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@dreamworld/dw-button/-/dw-button-3.0.0.tgz#0fd441b7dafd13efef8f93f0e7bdf2f5efcd38c8"
-  integrity sha512-uiOTu2MjJzltXV+qbavbwAQx5895UVBDS8h7oDsXZb6qrIiXeP+HduySVzd6ItLfy8AEEZs5qxEIzUjrbOL5MQ==
+"@dreamworld/dw-button@^3.0.5-add-custom-css-property-to-manage-height.1":
+  version "3.0.5-add-custom-css-property-to-manage-height.1"
+  resolved "https://registry.yarnpkg.com/@dreamworld/dw-button/-/dw-button-3.0.5-add-custom-css-property-to-manage-height.1.tgz#9c995ceab35d38410b5a3758cb6b4ac8d470a626"
+  integrity sha512-UKJASL4dsKe6uYJeOFpCrD0Jxror5dn54W/ckg4MftY6V54MRZ4j4T4hzFfKTeLvKJR+3n3imLRBYDNvW879cg==
   dependencies:
     "@dreamworld/pwa-helpers" "^1.13.1"
     "@material/mwc-button" "0.27.0"
