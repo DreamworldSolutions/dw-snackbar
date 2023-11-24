@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/DreamworldSolutions/dw-snackbar#readme",
   "dependencies": {
-    "@dreamworld/dw-button": "^3.0.0",
+    "@dreamworld/dw-button": "^3.0.5-add-custom-css-property-to-manage-height.1",
     "@dreamworld/dw-icon-button": "^3.0.0",
     "@dreamworld/material-styles": "^3.1.0",
     "@dreamworld/pwa-helpers": "^1.14.0",
