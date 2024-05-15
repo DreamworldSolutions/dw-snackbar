@@ -45,7 +45,8 @@ Used to show a snackbar. `config` is a plain-JS Object as follows:
      callback: callBack, // callback function to be invoked when user clicks on the action button. Callback method will receive `id` in the argument. ActionButton is disabled while it’s callback execution is in progress.
      link: link // Link to be opened when user clicks on the button. Link will be opened based on `linkTarget`. Actually action button will be rendered as Link button.
      linkTarget: '' // (Optional) It used to set Target of link. Possible values '_blank', '_self', '_parent', '_top'.
-   }
+   },
+   loading: true, // (Optional) Set `true` to show loading indicator. Default: false. When loading is true, dismiss (icon, text) and actions buttons are hidden.
  }
 ```
 
