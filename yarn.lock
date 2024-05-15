@@ -121,6 +121,19 @@
   dependencies:
     tslib "^2.1.0"
 
+"@material/circular-progress@=14.0.0-canary.53b3cad2f.0":
+  version "14.0.0-canary.53b3cad2f.0"
+  resolved "https://registry.yarnpkg.com/@material/circular-progress/-/circular-progress-14.0.0-canary.53b3cad2f.0.tgz#4e02635273d57abe2acd33b71a615b83c90f3db0"
+  integrity sha512-4A+HMgp66b45Fvbcbh9qb1j0vRFjKESbE2fHFkSMMNDPqFiKcvq4tJFBxKG2szYzpAnXdWLYaB+DeQ2+wSu9hg==
+  dependencies:
+    "@material/animation" "14.0.0-canary.53b3cad2f.0"
+    "@material/base" "14.0.0-canary.53b3cad2f.0"
+    "@material/feature-targeting" "14.0.0-canary.53b3cad2f.0"
+    "@material/progress-indicator" "14.0.0-canary.53b3cad2f.0"
+    "@material/rtl" "14.0.0-canary.53b3cad2f.0"
+    "@material/theme" "14.0.0-canary.53b3cad2f.0"
+    tslib "^2.1.0"
+
 "@material/dom@14.0.0-canary.53b3cad2f.0", "@material/dom@=14.0.0-canary.53b3cad2f.0":
   version "14.0.0-canary.53b3cad2f.0"
   resolved "https://registry.yarnpkg.com/@material/dom/-/dom-14.0.0-canary.53b3cad2f.0.tgz#55613a2bf3d0ea64989ad77291f053b607256012"
@@ -156,6 +169,17 @@
     lit "^2.0.0"
     tslib "^2.0.1"
 
+"@material/mwc-circular-progress@^0.27.0":
+  version "0.27.0"
+  resolved "https://registry.yarnpkg.com/@material/mwc-circular-progress/-/mwc-circular-progress-0.27.0.tgz#a0df2ec635fd9a802155bc09c755941fea42ced5"
+  integrity sha512-7DkqMb5pUrHfLus5EZ7IT2HUMoE+uPpjGzu3MnDpIzDlfYo6I8p+ifWtEytI0NtXdY5UmITNuCv0RC77mhJrgQ==
+  dependencies:
+    "@material/circular-progress" "=14.0.0-canary.53b3cad2f.0"
+    "@material/mwc-base" "^0.27.0"
+    "@material/theme" "=14.0.0-canary.53b3cad2f.0"
+    lit "^2.0.0"
+    tslib "^2.0.1"
+
 "@material/mwc-icon@0.27.0", "@material/mwc-icon@^0.27.0":
   version "0.27.0"
   resolved "https://registry.yarnpkg.com/@material/mwc-icon/-/mwc-icon-0.27.0.tgz#f25ecdd7fe54d810d7d655ba05251169f78b84fd"
@@ -174,6 +198,13 @@
     "@material/ripple" "=14.0.0-canary.53b3cad2f.0"
     lit "^2.0.0"
     tslib "^2.0.1"
+
+"@material/progress-indicator@14.0.0-canary.53b3cad2f.0":
+  version "14.0.0-canary.53b3cad2f.0"
+  resolved "https://registry.yarnpkg.com/@material/progress-indicator/-/progress-indicator-14.0.0-canary.53b3cad2f.0.tgz#cdec3ad71a5bc145f8c2a925c062c9301c1bdc4b"
+  integrity sha512-vW0oZK70QOpAarip95ueCQ/I3kBClcWjxsc0F0QjkqT76DOVXpjnZ4XoRRyq9eMpwLqlKLTecrsSNpmqwwF1Dg==
+  dependencies:
+    tslib "^2.1.0"
 
 "@material/ripple@=14.0.0-canary.53b3cad2f.0":
   version "14.0.0-canary.53b3cad2f.0"
@@ -196,7 +227,7 @@
     "@material/theme" "14.0.0-canary.53b3cad2f.0"
     tslib "^2.1.0"
 
-"@material/theme@14.0.0-canary.53b3cad2f.0":
+"@material/theme@14.0.0-canary.53b3cad2f.0", "@material/theme@=14.0.0-canary.53b3cad2f.0":
   version "14.0.0-canary.53b3cad2f.0"
   resolved "https://registry.yarnpkg.com/@material/theme/-/theme-14.0.0-canary.53b3cad2f.0.tgz#27863ec21c7c913b80b98a22f056dd3e75b85a0a"
   integrity sha512-S06XAevDCDWMe+GgsEpITMS07imUidzadNaTbJsqssFajBLr53QWVZsG84BpjXKXoYvyEJvb0hX5U0lq6ip9UQ==

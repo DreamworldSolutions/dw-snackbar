@@ -46,6 +46,7 @@ class DwSnackbarDemo extends LitElement {
       <dw-button outlined @click="${() => this._show()}">Basic</dw-button>
       <dw-button outlined @click="${() => this._show({ hideDismissBtn: true })}">Without dismiss icon</dw-button>
       <dw-button outlined @click="${() => this._show({ actionButton: { caption: 'Undo', callback: this._actionButtonCallback } })}">With action button</dw-button>
+      <dw-button outlined @click="${() => this._show({ hideDismissBtn: true, loading: true, timeout: 0 })}">With Loader</dw-button>
 
       <h3>Types</h3>
       <dw-button outlined @click="${() => this._show({ type: 'WARN' })}">Warn</dw-button>

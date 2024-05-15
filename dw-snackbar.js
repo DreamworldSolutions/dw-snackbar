@@ -9,6 +9,7 @@ import { Typography } from "@dreamworld/material-styles/typography.js";
 // Custom elements
 import "@dreamworld/dw-icon-button";
 import "@dreamworld/dw-button";
+import "@material/mwc-circular-progress";
 
 /**
  * This element is extended from 'layoutMixin' which sets "mobile" property initially.
@@ -138,6 +139,10 @@ export class DwSnackbar extends layoutMixin(LitElement) {
         dw-icon-button,
         dw-button {
           margin-right: 8px;
+        }
+
+        mwc-circular-progress {
+          margin-right: 12px;
         }
 
         dw-icon-button {
@@ -280,10 +285,19 @@ export class DwSnackbar extends layoutMixin(LitElement) {
             <!-- Toast text -->
             <div class="flex body2 text">${toast.message}</div>
 
+            <!-- Loader -->
+            ${toast.loading
+              ? html`
+                  <mwc-circular-progress
+                    .indeterminate="${true}"
+                    .density=${-6}
+                  ></mwc-circular-progress>
+                `
+              : ""}
             <!-- Toast actions -->
-            ${!toast.actionButton ? "" : this._getActionButtonTemplate(toast)}
+            ${!toast.actionButton || toast.loading ? "" : this._getActionButtonTemplate(toast)}
             <!-- Dismiss button -->
-            ${toast.hideDismissBtn
+            ${toast.hideDismissBtn || toast.loading
               ? ""
               : toast.dismissText
               ? html`
