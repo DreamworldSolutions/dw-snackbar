@@ -302,8 +302,10 @@ export class DwSnackbar extends layoutMixin(LitElement) {
               : toast.dismissText
               ? html`
                   <dw-button
+                    class="dismiss-button"
                     .label="${toast.dismissText}"
                     @click="${() => {
+                      toast.dismissCallback?.();
                       this.hide(toast.id);
                     }}"
                   >
