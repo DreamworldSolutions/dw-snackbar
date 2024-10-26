@@ -283,7 +283,7 @@ export class DwSnackbar extends layoutMixin(LitElement) {
         (toast) => html`
           <div class="toast animated" type="${toast.type}">
             <!-- Toast text -->
-            <div class="flex body2 text">${toast.message}</div>
+            <div class="flex body2 text">${html`${toast.message}`}</div>
 
             <!-- Loader -->
             ${toast.loading
