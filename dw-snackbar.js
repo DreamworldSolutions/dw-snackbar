@@ -13,11 +13,11 @@ import "@material/mwc-circular-progress";
 
 /**
  * This element is extended from 'layoutMixin' which sets "mobile" property initially.
- * There are 3 types of toast generally: "Informative", "Warning" "Error"
+ * There are 3 types of toast generally: "Informative", "Warning" "Error" and "Success".
  *
  * Behavior:
  *  - In mobile it's bottom/center aligned while in desktop it's bottom/left aligned.
- *  - Default type is "INFO". Use can provide "WARN" & "ERROR"
+ *  - Default type is "INFO". Use can provide "WARN" & "ERROR" and "SUCCESS" as well.
  *  - If actionButton is provided in config, it will renders action button at right side.
  *  - Renders close button at right side by default. User can hide it as well by "hideDismissBtn" config property.
  *
@@ -115,6 +115,10 @@ export class DwSnackbar extends layoutMixin(LitElement) {
         .toast[type="ERROR"] {
           color: var(--dw-snackbar-text-color-error, var(--dw-on-surface-invert-color));
           background-color: var(--dw-snackbar-background-color-error, var(--mdc-theme-error));
+        }
+
+        .toast[type="SUCCESS"] {
+          background-color: var(--dw-snackbar-background-color-success, #259B24);
         }
 
         /* Flex items' margins won't collapse so removing top margin */
