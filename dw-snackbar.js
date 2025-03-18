@@ -317,6 +317,7 @@ export class DwSnackbar extends layoutMixin(LitElement) {
                 `
               : html`
                   <dw-icon-button
+                    ?symbol="${true}"
                     .icon="${toast.dismissIcon}"
                     @click="${() => {
                       this.hide(toast.id);
