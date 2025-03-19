@@ -138,6 +138,7 @@ export class DwSnackbar extends layoutMixin(LitElement) {
 
         .text {
           padding: 14px 16px;
+          word-break: break-all;
         }
 
         dw-icon-button,
