@@ -81,7 +81,7 @@ hide(toastId);
 | `message` | `string` | — | Yes | The text content of the toast. Rendered as HTML via Lit's `html` template literal. |
 | `id` | `string \| number` | `Date.now()` | No | Unique identifier. Auto-generated from timestamp if omitted. Use a custom ID to later call `hide(id)`. |
 | `type` | `'INFO' \| 'WARN' \| 'ERROR' \| 'SUCCESS'` | `'INFO'` | No | Controls the background color of the toast. |
-| `timeout` | `number` | `10000` | No | Milliseconds before the toast auto-dismisses. Set to `0` to prevent auto-dismiss. **ERROR type toasts never auto-dismiss regardless of this value.** |
+| `timeout` | `number` | `10000` (`0` for `ERROR`) | No | Milliseconds before the toast auto-dismisses. Set to `0` to prevent auto-dismiss. For `ERROR` type toasts the default doesn't apply — they're auto-dismissed only when this is explicitly provided. |
 | `hideDismissBtn` | `boolean` | `false` | No | When `true`, the dismiss button (icon or text) is hidden. |
 | `dismissIcon` | `string` | `'close'` | No | Material Icon name for the dismiss button. Ignored when `dismissText` is set. |
 | `dismissText` | `string` | `undefined` | No | Text label for the dismiss button. When set, renders a `<dw-button>` instead of `<dw-icon-button>`. Mutually exclusive with `dismissIcon`. |
@@ -208,17 +208,26 @@ show({
 });
 ```
 
-#### ERROR Type — No Auto-Dismiss
+#### ERROR Type — Timeout
 
-ERROR toasts are never auto-dismissed, regardless of the `timeout` value. They must be dismissed by the user or by calling `hide(id)` programmatically.
+By default ERROR toasts aren't auto-dismissed; they must be dismissed by the user or by calling `hide(id)` programmatically. An explicit `timeout` in the config makes them auto-dismiss like any other toast.
 
 ```js
+// Default: stays until dismissed.
 show({
   type: 'ERROR',
   message: 'Connection failed. Please retry.',
-  timeout: 5000, // ignored for ERROR type
+});
+
+// Auto-dismissed after 5 seconds.
+show({
+  type: 'ERROR',
+  message: 'Connection failed. Please retry.',
+  timeout: 5000,
 });
 ```
+
+Only a `timeout` explicitly provided in the `show()` config applies to an ERROR toast — neither the built-in default (`10000`) nor a `setDefaults({ timeout })` value is applied to it. To vary it centrally, override the `_getToastTimeout(toastId)` method.
 
 #### Multiple Stacked Toasts
 

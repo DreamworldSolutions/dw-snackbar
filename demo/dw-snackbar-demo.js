@@ -50,7 +50,8 @@ class DwSnackbarDemo extends LitElement {
 
       <h3>Types</h3>
       <dw-button outlined @click="${() => this._show({ type: 'WARN' })}">Warn</dw-button>
-      <dw-button outlined @click="${() => this._show({ type: 'ERROR' })}">Error</dw-button>
+      <dw-button outlined @click="${() => this._show({ type: 'ERROR', timeout: undefined })}">Error</dw-button>
+      <dw-button outlined @click="${() => this._show({ type: 'ERROR', timeout: 5000 })}">Error (auto dismiss in 5s)</dw-button>
 
       <h3>Link</h3>
       <dw-button outlined @click="${() => this._show({actionButton: { caption: 'snackbar', link: 'https://github.com/DreamworldSolutions/dw-snackbar', linkTarget: '_blank', callback: this._actionButtonCallback } })}">Link open in new tab</dw-button>

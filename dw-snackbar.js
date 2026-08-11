@@ -373,7 +373,8 @@ export class DwSnackbar extends layoutMixin(LitElement) {
    * Returns timeout for the given toastId. It can be overridden to customize the behavior.
    * e.g. To return the duration based on application requirement like N seconds for the Toasts without action buttons and M seconds for the Toasts with Action Buttons.
    * @param {*} toastId
-   * @returns toast timeout of given toastId from toast list data.
+   * @returns toast timeout of given toastId from toast list data. `0` means, it's never
+   *          auto-dismissed.
    * @protected
    */
   _getToastTimeout(toastId) {
@@ -389,19 +390,27 @@ export class DwSnackbar extends layoutMixin(LitElement) {
       config.id = new Date().getTime();
     }
 
+    let toast = {
+      ...this.defaultConfig,
+      ...config,
+      counter: ++this.constructor.counter,
+    };
+
+    // An ERROR toast is auto-dismissed only when `timeout` is explicitly provided in its config.
+    // The default `timeout` isn't applied to it, so it stays until dismissed, as earlier.
+    if (toast.type === "ERROR" && config.timeout === undefined) {
+      toast.timeout = 0;
+    }
+
     this._toastList = this._toastList ? this._toastList : {};
     this._toastList = {
       ...this._toastList,
-      [config.id]: {
-        ...this.defaultConfig,
-        ...config,
-        counter: ++this.constructor.counter,
-      },
+      [config.id]: toast,
     };
 
     let timeout = this._getToastTimeout(config.id);
 
-    if (timeout === 0 || this._toastList[config.id].type === "ERROR") {
+    if (!timeout) {
       return;
     }
 
