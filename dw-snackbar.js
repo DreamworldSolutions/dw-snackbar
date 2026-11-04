@@ -1,7 +1,7 @@
-import { html, css } from 'lit-element';
+import { html, css } from 'lit';
 import { LitElement } from '@dreamworld/pwa-helpers/lit-element.js';
 import { layoutMixin } from '@dreamworld/pwa-helpers/layout-mixin.js';
-import { repeat } from 'lit-html/directives/repeat';
+import { repeat } from 'lit/directives/repeat.js';
 import sortBy from 'lodash-es/sortBy';
 
 // Styles
@@ -9,7 +9,7 @@ import { displayFlex, vertical, horizontal } from '@dreamworld/flex-layout/flex-
 import { centerAligned } from '@dreamworld/flex-layout/flex-layout-alignment-literals';
 import { flexLayout } from '@dreamworld/flex-layout/flex-layout';
 import { Typography } from '@dreamworld/material-styles/typography';
-import { styleMap } from 'lit-html/directives/style-map.js';
+import { styleMap } from 'lit/directives/style-map.js';
 
 // Custom elements
 import '@dreamworld/dw-icon-button';
@@ -344,20 +344,23 @@ export class DwSnackbar extends layoutMixin(LitElement) {
 window.customElements.define('dw-snackbar', DwSnackbar);
 
 
-function validateSnackBarExists() {
+function validateSnackBarExists(ignoreNotExistsError) {
   if(!snackBar) {
+    if(ignoreNotExistsError) {
+      return false;
+    }
     throw new Error('snackBar is not yet ready. Make sure you have added snack-bar into your app-shell');
   }
 
   return true;
 }
 
-export function show (config) {
-  return validateSnackBarExists() && snackBar.show(config);
+export function show (config, ignoreNotExistsError) {
+  return validateSnackBarExists(ignoreNotExistsError) && snackBar && snackBar.show(config);
 }
 
-export function hide (id) {
-  return validateSnackBarExists() && snackBar.hide(id);
+export function hide (id, ignoreNotExistsError) {
+  return validateSnackBarExists(ignoreNotExistsError) && snackBar && snackBar.hide(id);
 }
 
 export function setDefaults(config){ 
